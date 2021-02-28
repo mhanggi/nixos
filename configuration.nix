@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
       ./gpg.nix
+      ./st.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -123,10 +124,11 @@
     };
 
   };
- 
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    picom
     st
     dmenu
     wget
