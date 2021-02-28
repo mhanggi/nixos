@@ -53,7 +53,6 @@
     keyMap = "us";
   };
 
-  
   # Configure keymap in X11
   services.xserver.enable = true;
   services.xserver.layout = "us";
@@ -123,7 +122,26 @@
 
     programs.vim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [ gruvbox vim-airline vim-airline-themes ]; 
+      plugins = with pkgs.vimPlugins; [ gruvbox vim-airline vim-nix]; 
+      extraConfig = ''
+        " This should be enabled by default
+        set number
+        set incsearch
+        set smartcase
+        set expandtab
+
+
+        " Hack supports this so let's use it
+        let g:airline_powerline_fonts = 1
+
+        set t_Co=256
+        set termguicolors
+        " This is only necessary if you use "set termguicolors".
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        set background=dark
+        colorscheme gruvbox
+      '';
     };
   };
     
