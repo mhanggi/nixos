@@ -10,8 +10,11 @@
       ./hardware-configuration.nix
       <home-manager/nixos>
       ./gpg.nix
-      ./st.nix
     ];
+
+  nixpkgs.overlays = [
+    (import ./st-overlay.nix)
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -124,6 +127,7 @@
     };
 
   };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
