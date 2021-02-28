@@ -115,6 +115,16 @@
       userEmail = "29100324+mhanggi@users.noreply.github.com";
     };
 
+    programs.tmux = {
+      enable = true;
+      baseIndex = 1;
+      plugins = with pkgs.tmuxPlugins; [ gruvbox prefix-highlight ]; 
+    };
+
+    programs.vim = {
+      enable = true;
+      plugins = with pkgs.vimPlugins; [ gruvbox vim-airline vim-airline-themes ]; 
+    };
   };
     
   home-manager.users.root = {...} : {
@@ -143,6 +153,14 @@
     firefox
     zathura
   ];
+
+  fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
+    fonts = with pkgs; [
+      hack-font
+   ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
