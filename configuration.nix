@@ -130,7 +130,6 @@
         set smartcase
         set expandtab
 
-
         " Hack supports this so let's use it
         let g:airline_powerline_fonts = 1
 
@@ -143,7 +142,38 @@
         colorscheme gruvbox
       '';
     };
+
+    programs.readline = {
+      enable = true;
+      includeSystemConfig = true;
+      extraConfig = ''
+        " Enable the delete key in ST
+        set enable-keypad on
+      '';
+    };
+
+    # Make things pretty:
+    services.picom = {
+      enable = true;
+      blur = true;
+      fade = true;
+      shadow = true;
+      shadowExclude = [ "focused = 0" ];
+      extraOptions = ''
+        shadow-red   = 0;
+        shadow-green = 0.91;
+        shadow-blue  = 0.78;
+        xinerama-shadow-crop = true;
+      '';
+      };
+
+      services.random-background = {
+        enable = true;
+        imageDirectory = "%h/backgrounds";
+        interval = "1h";
+      };
   };
+
     
   home-manager.users.root = {...} : {
     programs.home-manager.enable = true;
