@@ -172,6 +172,13 @@
         imageDirectory = "%h/backgrounds";
         interval = "1h";
       };
+
+      xresources = {
+        properties = {
+          "st.font" = "Monospace-14";
+          "st.alpha" = "0.95";
+        };
+      };
   };
 
     
@@ -204,10 +211,21 @@
 
   fonts = {
     enableFontDir = true;
-    enableGhostscriptFonts = true;
     fonts = with pkgs; [
       hack-font
-   ];
+      dejavu_fonts
+      source-code-pro
+      source-sans-pro
+      source-serif-pro
+    ];
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "Source Code Pro" ];
+        sansSerif = [ "Source Sans Pro" ];
+        serif     = [ "Source Serif Pro" ];
+      };
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
