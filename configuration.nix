@@ -112,6 +112,7 @@
       enable = true;
       userName = "mhanggi";
       userEmail = "29100324+mhanggi@users.noreply.github.com";
+      ignores = [ "*~" "*.swp" ];
     };
 
     programs.tmux = {
