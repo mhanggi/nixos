@@ -176,7 +176,7 @@
 
       xresources = {
         properties = {
-          "st.font" = "Monospace-14";
+          "st.font" = "Monospace-12";
           "st.alpha" = "0.95";
         };
       };
