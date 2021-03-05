@@ -143,11 +143,11 @@
       '';
     };
 
+    # Enable the delete key in ST
     programs.readline = {
       enable = true;
       includeSystemConfig = true;
       extraConfig = ''
-        " Enable the delete key in ST
         set enable-keypad on
       '';
     };
