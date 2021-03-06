@@ -12,6 +12,12 @@
       ./gpg.nix
     ];
 
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
+
   nixpkgs.overlays = [
     (import ./st-overlay.nix)
   ];
@@ -144,6 +150,31 @@
       '';
     };
 
+    programs.firefox = {
+      enable = true;
+      extensions =
+        with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+          vimium
+          browserpass
+        ];
+      profiles = {
+        home = {
+          id = 0;
+          settings = {
+            "app.update.auto" = false;
+            "browser.startup.homepage" = "about:blank";
+            "browser.urlbar.placeholderName" = "Qwant";
+            "privacy.trackingprotection.enabled" = true;
+            "privacy.trackingprotection.socialtracking.enabled" = true;
+            "privacy.trackingprotection.socialtracking.annotate.enabled" = true;
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          };
+          userChrome = builtins.readFile conf.d/userChrome.css;
+        };
+      };
+    };
+
     # Enable the delete key in ST
     programs.readline = {
       enable = true;
@@ -241,12 +272,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
