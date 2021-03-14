@@ -262,6 +262,12 @@
 
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
+  nix.autoOptimiseStore = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
