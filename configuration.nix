@@ -59,13 +59,7 @@
     keyMap = "us";
   };
 
-  # Configure keymap in X11
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbVariant = "altgr-intl";
-  services.xserver.videoDrivers = [ "modesetting" ];
-  services.xserver.useGlamor = true;
-  services.xserver.windowManager.dwm.enable = true;
+  programs.sway.enable = true;
 
   # backlight control
   services.illum.enable = true;
@@ -106,6 +100,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  environment.variables.TERMINAL = "alacritty";
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marc = {
     isNormalUser = true;
@@ -114,19 +110,101 @@
 
   home-manager.users.marc = {...} : {
     programs.home-manager.enable = true;
+
+
+    home.sessionVariables = {
+      EDITOR = "vim";
+      BROWSER = "firefox";
+      TERMINAL = "alacritty";
+    };
+
+    home.packages = with pkgs; [
+      swaylock
+      swayidle
+      wl-clipboard
+      mako # notification daemon
+      alacritty # Alacritty is the default terminal in the config
+      dmenu # Dmenu is the default in the config but i recommend wofi since its wayland native
+      wofi
+      waybar
+    ];
+
+ 
+    wayland.windowManager.sway = {
+      enable = true;
+      
+      config = {
+        modifier = "Mod4";
+
+        input."*" = {
+          xkb_layout = "us";
+          xkb_variant = "altgr-intl";
+        };
+
+        terminal = "alacritty";
+        menu = "wofi --show drun";
+
+        window.border = 2;
+        gaps.smartBorders = "off";
+        gaps.smartGaps = true;
+        gaps.inner = 5;
+
+        # it seems the child border defines the color
+        colors = {
+          focused = {
+            border = "#d5c4a1"; # fg-2 
+            background = "#282828"; # bg-0
+            text = "#ebdbb2"; # fg-1
+            indicator = "#d5c4a1"; # fg-2
+            childBorder = "#d5c4a1"; # fg-2
+          };
+
+          unfocused = {
+            border = "#7c6f64"; # bg-4
+            background = "#282828"; # bg-0
+            text = "#ebdbb2"; # fg-1
+            indicator = "#7c6f64"; # bg-4
+            childBorder = "#7c6f64"; # bg-4
+          };
+
+          focusedInactive = {
+            border = "#7c6f64"; # bg-4
+            background = "#282828"; # bg-0
+            text = "#ebdbb2"; # fg-1
+            indicator = "#7c6f64"; # bg-4
+            childBorder = "#7c6f64"; # bg-4
+          };
+
+          urgent = {
+            border = "#cc241d"; # red-1
+            background = "#282828"; # bg-0
+            text = "#ee0000"; # fg-1
+            indicator = "#cc241d"; # red-1
+            childBorder = "#cc241d"; # red-1
+          };
+        };
+
+        output."*".bg = "~/wallpapers/5m5kLI9.png fill";
+      };
+    };
+
+    programs.waybar = {
+      enable = true;
+    };
+ 
     programs.git = {
       enable = true;
       userName = "mhanggi";
       userEmail = "29100324+mhanggi@users.noreply.github.com";
       ignores = [ "*~" "*.swp" ];
     };
-
+  
     programs.tmux = {
       enable = true;
       baseIndex = 1;
       plugins = with pkgs.tmuxPlugins; [ gruvbox prefix-highlight ]; 
     };
-
+  
     programs.vim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [ gruvbox vim-airline vim-nix]; 
@@ -136,10 +214,10 @@
         set incsearch
         set smartcase
         set expandtab
-
+  
         " Hack supports this so let's use it
         let g:airline_powerline_fonts = 1
-
+  
         set t_Co=256
         set termguicolors
         " This is only necessary if you use "set termguicolors".
@@ -149,7 +227,47 @@
         colorscheme gruvbox
       '';
     };
-
+  
+    programs.alacritty = {
+      enable = true;
+      settings = {
+        #background_opacity = 0.95;
+        window = {
+          padding.x = 10;
+          padding.y = 10;
+        };      
+  
+        colors = {
+          primary = {
+            background = "0x282828";
+            foreground = "0xdfbf8e";
+          }; 
+  
+          normal = {
+            black =   "0x665c54";
+            red =     "0xea6962";
+            green =   "0xa9b665";
+            yellow =  "0xe78a4e";
+            blue =    "0x7daea3";
+            magenta = "0xd3869b";
+            cyan =    "0x89b482";
+            white =   "0xdfbf8e";
+          };
+  
+          bright = {
+            black =   "0x928374";
+            red =     "0xea6962";
+            green =   "0xa9b665";
+            yellow =  "0xe3a84e";
+            blue =    "0x7daea3";
+            magenta = "0xd3869b";
+            cyan =    "0x89b482";
+            white =   "0xdfbf8e";
+          };
+        };
+      };
+    };
+  
     programs.firefox = {
       enable = true;
       extensions =
@@ -174,43 +292,43 @@
         };
       };
     };
-
-    # Enable the delete key in ST
-    programs.readline = {
-      enable = true;
-      includeSystemConfig = true;
-      extraConfig = ''
-        set enable-keypad on
-      '';
-    };
-
-    # Make things pretty:
-    services.picom = {
-      enable = true;
-      blur = true;
-      fade = true;
-      shadow = true;
-      shadowExclude = [ "focused = 0" ];
-      extraOptions = ''
-        shadow-red   = 0;
-        shadow-green = 0.91;
-        shadow-blue  = 0.78;
-        xinerama-shadow-crop = true;
-      '';
-      };
-
-      services.random-background = {
-        enable = true;
-        imageDirectory = "%h/backgrounds";
-        interval = "1h";
-      };
-
-      xresources = {
-        properties = {
-          "st.font" = "Monospace-12";
-          "st.alpha" = "0.95";
-        };
-      };
+  
+      # Enable the delete key in ST
+  #    programs.readline = {
+  #      enable = true;
+  #      includeSystemConfig = true;
+  #      extraConfig = ''
+  #        set enable-keypad on
+  #      '';
+  #    };
+  
+      # Make things pretty:
+  #    services.picom = {
+  #      enable = true;
+  #      blur = true;
+  #      fade = true;
+  #      shadow = true;
+  #      shadowExclude = [ "focused = 0" ];
+  #      extraOptions = ''
+  #        shadow-red   = 0;
+  #        shadow-green = 0.91;
+  #        shadow-blue  = 0.78;
+  #        xinerama-shadow-crop = true;
+  #      '';
+  #      };
+  
+  #      services.random-background = {
+  #        enable = true;
+  #        imageDirectory = "%h/backgrounds";
+  #        interval = "1h";
+  #      };
+  #
+  #      xresources = {
+  #        properties = {
+  #          "st.font" = "Monospace-12";
+  #          "st.alpha" = "0.95";
+  #        };
+  #      };
   };
 
     
@@ -229,16 +347,16 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    picom
-    st
-    dmenu
+#    picom
+#    st
+#    dmenu
+#    zathura
     wget
     vim
     tmux
     pass
     git
     firefox
-    zathura
   ];
 
   fonts = {
