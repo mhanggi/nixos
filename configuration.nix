@@ -67,6 +67,8 @@
   hardware.trackpoint.enable = true;
   hardware.trackpoint.emulateWheel = true;
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
   hardware.opengl.extraPackages = with pkgs; [
     vaapiIntel
