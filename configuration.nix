@@ -196,6 +196,54 @@
 
     programs.waybar = {
       enable = true;
+      settings = [
+        {
+          modules-left = [ "sway/workspaces" ];
+          modules-center = [];
+          modules-right = [ "network" "memory" "backlight" "battery" "battery#bat2" "clock" "tray"];
+
+          modules = {
+            "sway/workspaces" = {
+              disable-scroll = true;
+              all-outputs = true;
+            };
+            clock = {
+              format = "{:%a, %d %b %Y - %H:%M}";
+              tooltip = false;
+            };
+            "battery" = {
+              bat = "BAT1";
+              states = {
+                warning = 30;
+                critical = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-charging = " {capacity}%";
+              format-plugged = " {capacity}%";
+              format-alt = "{icon} {time}";
+              format-icons = ["" "" "" "" ""];
+            };
+            "battery#bat2" = {
+              bat = "BAT2";
+            };
+            "backlight" = {
+              format = "{icon} {percent}%";
+              format-icons = [""];
+            };
+            "memory" = {
+              format = " {used:0.1f} GiB";
+            };
+            "network" = {
+              format-wifi = " {essid} ({signalStrength}%)";
+              format-ethernet = " {ipaddr}/{cidr}";
+              format-linked = " {ifname} (No IP)";
+              format-disconnected = "⚠ Disconnected";
+              format-alt = "{ifname}: {ipaddr}/{cidr}";
+            };
+
+          };
+        }
+      ];
     };
  
     programs.git = {
@@ -369,6 +417,7 @@
     enableFontDir = true;
     fonts = with pkgs; [
       hack-font
+      font-awesome
       dejavu_fonts
       source-code-pro
       source-sans-pro
