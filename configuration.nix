@@ -143,6 +143,10 @@
           xkb_variant = "altgr-intl";
         };
 
+        bars = [
+          { command = "waybar"; }
+        ];
+
         terminal = "alacritty";
         menu = "wofi --show drun";
 
