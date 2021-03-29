@@ -70,8 +70,15 @@
   # backlight control
   services.illum.enable = true;
 
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
+    package = pkgs.pulseaudioFull;
+    extraConfig = "
+      load-module module-switch-on-connect
+    ";
+  };
 
+  hardware.bluetooth.enable = true;
   hardware.trackpoint.enable = true;
   hardware.trackpoint.emulateWheel = true;
   hardware.cpu.intel.updateMicrocode = true;
