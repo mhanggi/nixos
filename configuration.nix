@@ -208,7 +208,7 @@
         {
           modules-left = [ "sway/workspaces" ];
           modules-center = [];
-          modules-right = [ "memory" "disk" "backlight" "battery" "battery#bat2" "network" "clock" "tray"];
+          modules-right = [ "memory" "disk" "backlight" "battery" "battery#bat1" "network" "clock" ];
 
           modules = {
             "sway/workspaces" = {
@@ -221,7 +221,7 @@
               tooltip = false;
             };
             "battery" = {
-              bat = "BAT1";
+              bat = "BAT0";
               states = {
                 warning = 30;
                 critical = 15;
@@ -232,8 +232,17 @@
               format-alt = "{icon} {time}";
               format-icons = ["" "" "" "" ""];
             };
-            "battery#bat2" = {
-              bat = "BAT2";
+            "battery#bat1" = {
+              bat = "BAT1";
+              states = {
+                warning = 30;
+                critical = 15;
+              };
+              format = "{icon} {capacity}%";
+              format-charging = " {capacity}%";
+              format-plugged = " {capacity}%";
+              format-alt = "{icon} {time}";
+              format-icons = ["" "" "" "" ""];
             };
             "backlight" = {
               format = "{icon} {percent}%";
