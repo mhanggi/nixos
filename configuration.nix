@@ -208,7 +208,7 @@
         {
           modules-left = [ "sway/workspaces" ];
           modules-center = [];
-          modules-right = [ "network" "memory" "backlight" "battery" "battery#bat2" "clock" "tray"];
+          modules-right = [ "memory" "disk" "backlight" "battery" "battery#bat2" "network" "clock" "tray"];
 
           modules = {
             "sway/workspaces" = {
@@ -238,8 +238,13 @@
               format = "{icon} {percent}%";
               format-icons = [""];
             };
+            "disk" = {
+              interval = 30;
+              format = " {percentage_used}%";
+              path = "/";
+            };
             "memory" = {
-              format = " {used:0.1f} GiB";
+              format = " {used:0.1f} GiB";
             };
             "network" = {
               format-wifi = " {essid} ({signalStrength}%)";
