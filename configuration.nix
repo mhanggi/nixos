@@ -67,8 +67,6 @@
     keyMap = "us";
   };
 
-  #programs.sway.enable = true;
-
   # backlight control
   services.illum.enable = true;
 
