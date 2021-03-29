@@ -70,6 +70,8 @@
   # backlight control
   services.illum.enable = true;
 
+  hardware.pulseaudio.enable = true;
+
   hardware.trackpoint.enable = true;
   hardware.trackpoint.emulateWheel = true;
   hardware.cpu.intel.updateMicrocode = true;
@@ -95,15 +97,6 @@
   };
 
   services.tlp.enable = true;
-
-  # Enable sound.
-  sound.enable = true;
-  sound.mediaKeys = {
-    enable = true;
-    volumeStep = "5%";
-  };
-
-  #hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -153,6 +146,13 @@
         bars = [
           { command = "waybar"; }
         ];
+
+        keybindings = pkgs.lib.mkOptionDefault {
+          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        };
 
         terminal = "alacritty";
         menu = "wofi --show drun";
