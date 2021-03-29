@@ -218,8 +218,8 @@
       settings = [
         {
           modules-left = [ "sway/workspaces" ];
-          modules-center = [];
-          modules-right = [ "pulseaudio" "memory" "disk" "backlight" "battery" "battery#bat1" "network" "clock" ];
+          modules-center = ["clock"];
+          modules-right = [ "pulseaudio" "custom/sep" "memory" "custom/sep" "disk" "custom/sep" "backlight" "custom/sep" "battery" "custom/sep" "battery#bat1" "custom/sep" "network" ];
 
           modules = {
             "sway/workspaces" = {
@@ -275,8 +275,8 @@
               format-alt = "{ifname}: {ipaddr}/{cidr}";
             };
 	    "pulseaudio" = {
-		format = "{volume}% {icon}";
-		format-bluetooth = "{volume}% {icon}";
+		format = "{icon} {volume}%";
+		format-bluetooth = "{icon} {volume}%";
 		format-muted = "";
 		format-icons = {
 		  headphone = "";
@@ -290,6 +290,11 @@
 		scroll-step = 1;
 		on-click = "pavucontrol";
 	    };
+            "custom/sep" = {
+               format = "|";
+               interval = "once";
+               tooltip = false;
+            };
           };
         }
       ];
@@ -322,19 +327,19 @@
 	    padding: 0 5px;
 	    background-color: transparent;
 	    color: #ebdbb2;
-	    border-bottom: 3px solid transparent;
+	    border-top: 3px solid transparent;
 	}
 
 	/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 	#workspaces button:hover {
 	    background: rgba(0, 0, 0, 0.2);
 	    box-shadow: inherit;
-	    border-bottom: 3px solid #d79921;
+	    border-top: 3px solid #d79921;
 	}
 
 	#workspaces button.focused {
 	    background: rgba(255, 255, 255, 0.1);
-	    border-bottom: 3px solid #d79921;
+	    border-top: 3px solid #d79921;
 	}
 
 	#workspaces button.urgent {
@@ -358,8 +363,8 @@
 	#pulseaudio {
 	    padding-left: 2px;
 	    padding-right: 2px;
-	    margin-left: 4px;
-	    margin-right: 4px;
+	    margin-left: 5px;
+	    margin-right: 5px;
 	}
 
 	@keyframes blink {
@@ -390,14 +395,10 @@
 	#pulseaudio.muted {
 	}
 
-	#waybar > box:nth-child(2) > box:nth-child(3) > *:not(:first-child) > label {
-	  background-image:
-	    linear-gradient(@col_border_trans, @col_border_solid 45%, @col_border_solid 55%, @col_border_trans)
-	  ;
-	  background-size:1px 20%;
-	  background-position:0 50%;
-	  background-repeat:no-repeat;
-	}
+        #custom-separator {
+          color: #1B5E20;
+          margin: 0 5px;
+        }
       '';
     };
  
