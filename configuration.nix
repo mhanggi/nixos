@@ -228,7 +228,7 @@
             };
             clock = {
               format = " {:%a, %d %b %Y - %H:%M}";
-              format-alt = " {:%OV/%Y}";
+              format-alt = " {:Week %OV - %Y}";
               tooltip = false;
             };
             "battery" = {
