@@ -217,6 +217,7 @@
             };
             clock = {
               format = "{:%a, %d %b %Y - %H:%M}";
+              format-alt = " {:%OV/%Y}";
               tooltip = false;
             };
             "battery" = {
