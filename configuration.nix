@@ -22,6 +22,11 @@
     (import ./st-overlay.nix)
   ];
 
+  # Set some package configs
+  nixpkgs.config.pulseaudio = true;
+  nixpkgs.config.wayland = true;
+  nixpkgs.config.allowUnfree = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -119,12 +124,15 @@
   home-manager.users.marc = {...} : {
     programs.home-manager.enable = true;
 
-
     home.sessionVariables = {
       EDITOR = "vim";
       BROWSER = "firefox";
       TERMINAL = "alacritty";
     };
+
+    # Define some compile arguments
+    nixpkgs.config.pulseaudio = true;
+    nixpkgs.config.wayland = true;
 
     home.packages = with pkgs; [
       swaylock
@@ -214,7 +222,7 @@
         {
           modules-left = [ "sway/workspaces" ];
           modules-center = [];
-          modules-right = [ "memory" "disk" "backlight" "battery" "battery#bat1" "network" "clock" ];
+          modules-right = [ "pulseaudio" "memory" "disk" "backlight" "battery" "battery#bat1" "network" "clock" ];
 
           modules = {
             "sway/workspaces" = {
@@ -269,10 +277,131 @@
               format-disconnected = "⚠ Disconnected";
               format-alt = "{ifname}: {ipaddr}/{cidr}";
             };
-
+	    "pulseaudio" = {
+		format = "{volume}% {icon}";
+		format-bluetooth = "{volume}% {icon}";
+		format-muted = "";
+		format-icons = {
+		  headphone = "";
+		  hands-free = "";
+		  headset = "";
+		  phone = "";
+		  portable = "";
+		  car = "";
+		  default = ["" ""];
+		};
+		scroll-step = 1;
+		on-click = "pavucontrol";
+	    };
           };
         }
       ];
+
+      style = ''
+        * {
+            border: none;
+            border-radius: 0;
+            font-family: monospace;
+            font-size: 14px;
+        }        
+
+        window#waybar {
+          background: #16191C;
+          color: #AAB2BF;
+        }
+
+	window#waybar {
+	    background-color: #282828;
+	    color: #ebdbb2;
+	    transition-property: background-color;
+	    transition-duration: .5s;
+	}
+
+	window#waybar.hidden {
+	    opacity: 0.2;
+	}
+
+	#workspaces button {
+	    padding: 0 5px;
+	    background-color: transparent;
+	    color: #ebdbb2;
+	    border-bottom: 3px solid transparent;
+	}
+
+	/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+	#workspaces button:hover {
+	    background: rgba(0, 0, 0, 0.2);
+	    box-shadow: inherit;
+	    border-bottom: 3px solid #d79921;
+	}
+
+	#workspaces button.focused {
+	    background: rgba(255, 255, 255, 0.1);
+	    border-bottom: 3px solid #d79921;
+	}
+
+	#workspaces button.urgent {
+	    background-color: #eb4d4b;
+	}
+
+	#mode {
+	    background-color: #444;
+	}
+       
+	#backlight,
+	#battery,
+	#custom-media,
+        #clock,
+        #disk,
+	#memory,
+        #network,
+	#network,
+	#mode,
+	#mpd,
+	#pulseaudio {
+	    padding-left: 2px;
+	    padding-right: 2px;
+	    margin-left: 4px;
+	    margin-right: 4px;
+	}
+
+	@keyframes blink {
+	    to {
+		background-color: #ffffff;
+		color: #000000;
+	    }
+	}
+
+	#battery.critical:not(.charging) {
+	    background-color: #f53c3c;
+	    color: #ffffff;
+	    animation-name: blink;
+	    animation-duration: 0.5s;
+	    animation-timing-function: linear;
+	    animation-iteration-count: infinite;
+	    animation-direction: alternate;
+	}
+
+	label:focus {
+	    background-color: #000000;
+	}
+
+	#network.disconnected {
+	    background-color: #f53c3c;
+	}
+
+	#pulseaudio.muted {
+	}
+
+	#waybar > box:nth-child(2) > box:nth-child(3) > *:not(:first-child) > label {
+	  background-image:
+	    linear-gradient(@col_border_trans, @col_border_solid 45%, @col_border_solid 55%, @col_border_trans)
+	  ;
+	  background-size:1px 20%;
+	  background-position:0 50%;
+	  background-repeat:no-repeat;
+	}
+      '';
     };
  
     programs.git = {
