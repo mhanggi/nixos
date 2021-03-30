@@ -111,7 +111,6 @@
 
   services.tlp.enable = true;
 
-  environment.variables.TERMINAL = "alacritty";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marc = {
@@ -141,9 +140,7 @@
       swayidle
       wl-clipboard
       mako # notification daemon
-      alacritty
       wofi
-      waybar
       imv
       bc
     ];
@@ -540,7 +537,6 @@
     tmux
     pass
     git
-    firefox
   ];
 
   fonts = {
