@@ -165,6 +165,13 @@
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
           "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+          "XF86Calculator" = "exec alacritty -e bc"; # Calculator button
+          "XF86HomePage" = "exec firefox";
+          "XF86Tools" = "exec alacritty -e sudo vim /etc/nixos/configuration.nix"; #FN-F9
+          "XF86Search" = "exec firefox"; # FN-F10
+          "XF86LaunchA" = "exec firefox"; # FN-F11
+          "XF86Explorer" = "exec alacritty -e lf"; # FN-F12
+          "Print" = "exec alacritty"; # Print Screen
         };
 
         terminal = "alacritty";
