@@ -61,9 +61,10 @@
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-       LC_TIME = "de_CH.UTF-8";
-       LC_PAPER = "de_CH.UTF-8";
-       LC_MEASUREMENT= "de_CH.UTF-8";
+      # GB starts the week on Monday
+      LC_TIME = "en_GB.UTF-8";
+      LC_PAPER = "de_CH.UTF-8";
+      LC_MEASUREMENT= "de_CH.UTF-8";
     };
   };
 
@@ -142,7 +143,6 @@
       imv
       bc
     ];
-
  
     wayland.windowManager.sway = {
       enable = true;
