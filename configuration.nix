@@ -517,42 +517,6 @@
       };
     };
   
-      # Enable the delete key in ST
-  #    programs.readline = {
-  #      enable = true;
-  #      includeSystemConfig = true;
-  #      extraConfig = ''
-  #        set enable-keypad on
-  #      '';
-  #    };
-  
-      # Make things pretty:
-  #    services.picom = {
-  #      enable = true;
-  #      blur = true;
-  #      fade = true;
-  #      shadow = true;
-  #      shadowExclude = [ "focused = 0" ];
-  #      extraOptions = ''
-  #        shadow-red   = 0;
-  #        shadow-green = 0.91;
-  #        shadow-blue  = 0.78;
-  #        xinerama-shadow-crop = true;
-  #      '';
-  #      };
-  
-  #      services.random-background = {
-  #        enable = true;
-  #        imageDirectory = "%h/backgrounds";
-  #        interval = "1h";
-  #      };
-  #
-  #      xresources = {
-  #        properties = {
-  #          "st.font" = "Monospace-12";
-  #          "st.alpha" = "0.95";
-  #        };
-  #      };
   };
 
     
@@ -571,10 +535,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-#    picom
-#    st
-#    dmenu
-#    zathura
     wget
     vim
     tmux
