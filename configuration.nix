@@ -513,6 +513,10 @@
         };
       };
     };
+
+    programs.lf = {
+      enable = true;
+    };
   
   };
 
