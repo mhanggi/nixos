@@ -126,6 +126,10 @@
       EDITOR = "vim";
       BROWSER = "firefox";
       TERMINAL = "alacritty";
+      XDG_CURRENT_DESKTOP = "sway";
+      MOZ_ENABLE_WAYLAND = 1;
+      MOZ_WEBRENDER = 1; # Enable Servo Engine
+      MOZ_DBUS_REMOTE= 1;
     };
 
     # Define some compile arguments
@@ -480,6 +484,9 @@
   
     programs.firefox = {
       enable = true;
+      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+        forceWayland = true;
+      };
       extensions =
         with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
@@ -497,6 +504,9 @@
             "privacy.trackingprotection.socialtracking.enabled" = true;
             "privacy.trackingprotection.socialtracking.annotate.enabled" = true;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "gfx.webrender.all" = true;
+            "widget.wayland-dmabuf-vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
           };
           userChrome = builtins.readFile conf.d/userChrome.css;
         };
