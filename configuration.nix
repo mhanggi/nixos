@@ -175,13 +175,14 @@
           "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
           "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
           "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-          "XF86Calculator" = "exec alacritty -e bc"; # Calculator button
+          "XF86Calculator" = "exec alacritty -e bc";
           "XF86HomePage" = "exec firefox";
-          "XF86Tools" = "exec alacritty -e sudo vim /etc/nixos/configuration.nix"; #FN-F9
-          "XF86Search" = "exec firefox"; # FN-F10
-          "XF86LaunchA" = "exec firefox"; # FN-F11
-          "XF86Explorer" = "exec alacritty -e lf"; # FN-F12
-          "Print" = "exec alacritty"; # Print Screen
+          "XF86Tools" = "exec alacritty -e sudo ~/.local/bin/nixconf.sh"; #FN-F9
+          "XF86Search" = "exec alacritty -e lf"; # FN-F10
+         # "XF86Display" = "exec bla" # FN-F7
+         # "XF86LaunchA" = "exec firefox"; # FN-F11
+         # "XF86Explorer" = "exec alacritty -e lf"; # FN-F12
+         # "Print" = "exec alacritty"; # Print Screen
         };
 
         terminal = "alacritty";
