@@ -150,6 +150,7 @@
       wl-clipboard
       mako # notification daemon
       wofi
+      hicolor_icon_theme # required by wofi
       imv
       bc
     ];
