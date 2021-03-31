@@ -136,6 +136,10 @@
       MOZ_DBUS_REMOTE= 1;
     };
 
+    home.sessionPath = [
+      "~/.local/bin"
+    ];
+
     # Define some compile arguments
     nixpkgs.config.pulseaudio = true;
     nixpkgs.config.wayland = true;
