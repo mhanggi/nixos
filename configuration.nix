@@ -154,6 +154,7 @@
       mako # notification daemon
       wofi
       hicolor_icon_theme # required by wofi
+      gnome3.adwaita-icon-theme # required that wofi shows icons
       imv
       bc
     ];
