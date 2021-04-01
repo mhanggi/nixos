@@ -21,10 +21,6 @@
     };
   };
 
-  nixpkgs.overlays = [
-    (import ./st-overlay.nix)
-  ];
-
   # Set some package configs
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.wayland = true;
