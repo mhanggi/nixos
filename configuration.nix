@@ -157,6 +157,8 @@
       gnome3.adwaita-icon-theme # required that wofi shows icons
       imv
       bc
+      simple-scan
+      neofetch
     ];
  
     wayland.windowManager.sway = {
