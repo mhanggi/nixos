@@ -152,9 +152,6 @@
       swayidle
       wl-clipboard
       mako # notification daemon
-      wofi
-      hicolor_icon_theme # required by wofi
-      gnome3.adwaita-icon-theme # required that wofi shows icons
       imv
       bc
       simple-scan
@@ -192,7 +189,7 @@
         };
 
         terminal = "alacritty";
-        menu = "wofi --show drun";
+        menu = "rofi -show drun";
 
         window.border = 2;
         gaps.smartBorders = "off";
@@ -534,6 +531,37 @@
             "media.ffvpx.enabled" = false;
           };
           userChrome = builtins.readFile conf.d/userChrome.css;
+        };
+      };
+    };
+
+    programs.rofi = {
+      enable = true;
+      package = pkgs.nur.repos.metadark.rofi-wayland; # rofi with wayland support
+      width = 520;
+      padding = 10;
+      lines = 18;
+      font = "monospace 10";
+      separator = "none";
+      borderWidth = 1;
+      scrollbar = false;
+      colors = {
+        window = {
+          background = "#282828";
+          border = "#ebdbb2";
+          separator = "#ebdbb2";
+        };
+
+        rows = {
+          normal = {
+            background = "#282828";
+            foreground = "#ebdbb2";
+            backgroundAlt = "#282828";
+            highlight = {
+              background = "#d79921";
+              foreground = "#282828";
+            };
+          };
         };
       };
     };
