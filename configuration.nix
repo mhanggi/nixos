@@ -469,6 +469,12 @@
           padding.y = 10;
         };      
   
+
+        selection = {
+          semantic_escape_chars = ",│`|:\"' ()[]{}<>\t";
+          save_to_clipboard = true;
+        };
+
         colors = {
           primary = {
             background = "0x282828";
