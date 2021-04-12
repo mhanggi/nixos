@@ -463,12 +463,11 @@
     programs.alacritty = {
       enable = true;
       settings = {
-        #background_opacity = 0.95;
+
         window = {
           padding.x = 10;
           padding.y = 10;
         };      
-  
 
         selection = {
           semantic_escape_chars = ",│`|:\"' ()[]{}<>\t";
