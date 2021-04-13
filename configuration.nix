@@ -152,6 +152,7 @@
       bc
       simple-scan
       neofetch
+      sc-im
     ];
  
     wayland.windowManager.sway = {
