@@ -14,8 +14,8 @@
 
   nixpkgs.config.packageOverrides = pkgs: {
     nur = import (builtins.fetchTarball {
-      url = "https://github.com/nix-community/NUR/archive/a232756915ad8b7024cb0a098ae917ced6b76f4e.tar.gz"; 
-      sha256 = "1jf5rdxyqk6q8x4x81n15bnn0z0158y2g9wnl2d2yxxv15rgdlbi";
+      url = "https://github.com/nix-community/NUR/archive/master.tar.gz"; 
+      #sha256 = "1jf5rdxyqk6q8x4x81n15bnn0z0158y2g9wnl2d2yxxv15rgdlbi";
     }){
       inherit pkgs;
     };
@@ -134,6 +134,8 @@
       MOZ_WEBRENDER = 1; # Enable Servo Engine
       MOZ_DBUS_REMOTE= 1;
     };
+
+    home.stateVersion = "21.03";
 
     home.sessionPath = [
       "~/.local/bin"
@@ -508,9 +510,7 @@
   
     programs.firefox = {
       enable = true;
-      package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-        forceWayland = true;
-      };
+      package = pkgs.firefox-wayland;
       extensions =
         with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
@@ -607,7 +607,7 @@
   ];
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     fonts = with pkgs; [
       hack-font
       font-awesome
