@@ -574,6 +574,16 @@
       settings.preview = true;
     };
   
+    programs.neomutt = {
+      enable = true;
+    };
+
+    programs.jq.enable = true;
+    programs.newsboat.enable = true;
+    programs.htop.enable = true;
+    programs.zathura.enable = true;
+    programs.mpv.enable = true;
+
   };
 
     
@@ -593,10 +603,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    vim
-    tmux
     pass
-    git
   ];
 
   fonts = {
