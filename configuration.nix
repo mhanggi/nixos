@@ -570,6 +570,8 @@
 
     programs.lf = {
       enable = true;
+      settings.color256 = true;
+      settings.preview = true;
     };
   
   };
