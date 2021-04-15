@@ -604,6 +604,7 @@
   environment.systemPackages = with pkgs; [
     wget
     pass
+    cryptsetup
   ];
 
   fonts = {
