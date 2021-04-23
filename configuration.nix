@@ -161,6 +161,7 @@
       protonmail-bridge
       w3m
       urlscan
+      youtube-dl
     ];
  
     wayland.windowManager.sway = {
