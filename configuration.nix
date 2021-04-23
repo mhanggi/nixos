@@ -442,11 +442,6 @@
       };
     };
 
-    programs.browserpass = {
-      enable = true;
-      browsers = [ "firefox" ];
-    };
- 
     programs.git = {
       enable = true;
       userName = "mhanggi";
@@ -540,7 +535,6 @@
         with pkgs.nur.repos.rycee.firefox-addons; [
           ublock-origin
           vimium
-          browserpass
         ];
       profiles = {
         home = {
