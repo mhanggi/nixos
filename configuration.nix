@@ -151,6 +151,7 @@
       swaylock
       swayidle
       wl-clipboard
+      gnome3.adwaita-icon-theme # to prevent GTK warnings
       mako # notification daemon
       imv
       bc
