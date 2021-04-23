@@ -830,9 +830,26 @@
       '';
     };
 
+    programs.mpv = {
+      enable = true;
+      config = {
+        vo = "gpu";
+        gpu-context = "wayland";
+      };
+    };
+
+    services.mpd = {
+      enable = true;
+      network.startWhenNeeded = true;
+    };
+
+    programs.ncmpcpp = {
+      enable = true;
+    };
+
     programs.jq.enable = true;
     programs.htop.enable = true;
-    programs.mpv.enable = true;
+
   };
 
   home-manager.users.root = {...} : {
