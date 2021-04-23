@@ -785,8 +785,52 @@
       };
     };
 
+    programs.newsboat = {
+      enable = true;
+      autoReload = true;
+      urls = [
+        { title = "hackernews"; tags = [ "IT" ] ; url = "https://news.ycombinator.com/rss"; }
+        { title = "golem.de"; tags = [ "IT" ] ; url = "https://www.golem.de/rss"; }
+        { title = "srf.ch"; tags = [ "News" ] ; url = "https://www.srf.ch/news/bnf/rss/1646"; }
+      ];
+      extraConfig = ''
+        bind-key j down
+        bind-key k up
+        bind-key j next articlelist
+        bind-key k prev articlelist
+        bind-key J next-feed articlelist
+        bind-key K prev-feed articlelist
+        bind-key G end
+        bind-key g home
+        bind-key d pagedown
+        bind-key u pageup
+        bind-key l open
+        bind-key h quit
+        bind-key a toggle-article-read
+        bind-key n next-unread
+        bind-key N prev-unread
+        bind-key D pb-download
+        bind-key U show-urls
+        bind-key x pb-delete
+
+        color article                              color223 color235
+        color background                           color223 color235
+        color info                                 color142 color235
+        color listfocus                            color109 color239
+        color listfocus_unread                     color223 color239
+        color listnormal                           color109 color235
+        color listnormal_unread                    color223 color235
+        highlight article "^Feed:.*"               color223 color237
+        highlight article "^Title:.*"              color223 color237 bold
+        highlight article "^Author:.*"             color223 color237
+        highlight article "^Link:.*"               color109 color237
+        highlight article "^Date:.*"               color142 color237
+        highlight article "\\[[0-9]\\+\\]"         color208 color237 bold
+        highlight article "\\[[^0-9].*[0-9]\\+\\]" color167 color237 bold
+      '';
+    };
+
     programs.jq.enable = true;
-    programs.newsboat.enable = true;
     programs.htop.enable = true;
     programs.mpv.enable = true;
   };
