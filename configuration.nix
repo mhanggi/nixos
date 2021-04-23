@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       <home-manager/nixos>
-      ./gpg.nix
     ];
 
   nixpkgs.config.packageOverrides = pkgs: {
@@ -109,6 +108,9 @@
   };
 
   services.tlp.enable = true;
+  services.pcscd.enable = true;
+
+  #services.gnome3.gnome-keyring.enable = true;
 
   security.pam.services.swaylock = {
     text = ''
@@ -429,6 +431,15 @@
     programs.bash = {
       enable = true;
     };
+
+    programs.password-store = {
+      enable = true;
+    };
+
+    programs.browserpass = {
+      enable = true;
+      browsers = [ "firefox" ];
+    };
  
     programs.git = {
       enable = true;
@@ -465,6 +476,11 @@
         colorscheme gruvbox
       '';
     };
+
+    programs.gpg.enable = true;
+    services.gpg-agent.enable = true;
+    services.gpg-agent.enableScDaemon = true;
+    services.gpg-agent.pinentryFlavor = "curses";
   
     programs.alacritty = {
       enable = true;
@@ -543,6 +559,8 @@
     programs.rofi = {
       enable = true;
       package = pkgs.nur.repos.metadark.rofi-wayland; # rofi with wayland support
+      pass.enable = true;
+      pass.stores =[ "/home/marc/.password-store" ];
       width = 520;
       padding = 10;
       lines = 18;
@@ -747,7 +765,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     wget
-    pass
+    procps
     cryptsetup
   ];
 
