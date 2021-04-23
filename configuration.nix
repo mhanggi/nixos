@@ -602,7 +602,7 @@
       macros = [
         {
           key = "O";
-          action = "<shell-escape>mbsync -a<enter>"; # Sync all email
+          action = "<shell-escape>offlineimap<enter>"; # Sync all email
           map = [ "index" ];
         }
         {
@@ -708,7 +708,7 @@
        text/html; w3m -I %{charset} -T text/html; copiousoutput;
     '';
 
-    programs.mbsync = {
+    programs.offlineimap = {
       enable = true;
     };
 
@@ -725,20 +725,16 @@
     accounts.email.accounts = let protonparams = import ./proton-params.nix; in {
       "protonmail" = (protonparams // {
         primary = true;
+        folders.inbox = "INBOX";
         imap.host = "127.0.0.1";
         imap.port = 1143;
         imap.tls.enable = false;
         smtp.host = "127.0.0.1";
         smtp.port = 1025;
         smtp.tls.enable = false;
-        mbsync.enable = true;
-        mbsync.create = "both";
+        offlineimap.enable = true;
         neomutt.enable = true;
         notmuch.enable = true;
-        imapnotify.enable = true;
-        imapnotify.boxes = [ "Inbox" ];
-        imapnotify.onNotify = "mbsync protonmail";
-        imapnotify.onNotifyPost = "notmuch new";
       });
     };
 
@@ -749,7 +745,6 @@
     programs.mpv.enable = true;
   };
 
-    
   home-manager.users.root = {...} : {
     programs.home-manager.enable = true;
     
