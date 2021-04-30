@@ -809,9 +809,11 @@
 	render-loading-fg  = "#ebdbb2"; # fg
 
 	# Recolor book content's color
-	recolor-lightcolor = "#282828"; # bg
-	recolor-darkcolor = "#ebdbb2"; # fg
-	recolor = "true";
+        recolor-lightcolor = "#282828"; # bg
+        recolor-darkcolor = "#ebdbb2"; # fg
+        recolor = "true";
+        recolor-reverse-video = "true"; # Keep original picture colors
+        recolor-keephue = "true";
       };
     };
 
