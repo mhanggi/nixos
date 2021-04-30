@@ -162,6 +162,8 @@
       swayidle
       wl-clipboard
       gnome3.adwaita-icon-theme # to prevent GTK warnings
+      gruvbox-dark-icons-gtk
+      dconf # required for home-manager gtk.*
       mako # notification daemon
       imv
       bc
@@ -173,7 +175,15 @@
       urlscan
       youtube-dl
     ];
- 
+
+    gtk = {
+      enable = true;
+      theme.package = pkgs.gruvbox-dark-gtk;
+      theme.name = "gruvbox-dark";
+      iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
+      iconTheme.name = "oomox-gruvbox-dark";
+    };
+
     wayland.windowManager.sway = {
       enable = true;
       
