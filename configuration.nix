@@ -108,8 +108,19 @@
   };
 
   services.tlp.enable = true;
-  services.pcscd.enable = true;
 
+  services.pcscd.enable = true;
+  services.udev.packages = with pkgs; [
+    yubikey-personalization
+  ];
+  security.polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
+          subject.isInGroup("wheel")) {
+          return polkit.Result.YES;
+        }
+      });
+  '';
 
   security.pam.services.swaylock = {
     text = ''
@@ -867,6 +878,8 @@
     wget
     procps
     cryptsetup
+    yubikey-personalization
+    pcsclite
   ];
 
   fonts = {
