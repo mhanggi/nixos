@@ -623,8 +623,39 @@
 
     programs.neomutt = {
       enable = true;
-  #    vimKeys = true;
       sort = "reverse-date-received";
+      binds = [
+        {
+          key = "\\ck";
+          action = "sidebar-prev";
+          map = [ "index" "pager" ];
+        }
+        {
+          key = "\\cj";
+          action = "sidebar-next";
+          map = [ "index" "pager" ];
+        }
+        {
+          key = "\\co";
+          action = "sidebar-open";
+          map = [ "index" "pager" ];
+        }
+        {
+          key = "\\cp";
+          action = "sidebar-prev-new";
+          map = [ "index" "pager" ];
+        }
+        {
+          key = "\\cn";
+          action = "sidebar-next-new";
+          map = [ "index" "pager" ];
+        }
+        {
+          key = "B";
+          action = "sidebar-toggle-visible";
+          map = [ "index" "pager" ];
+        }
+      ];
       macros = [
         {
           key = "O";
@@ -638,25 +669,40 @@
         }
       ];
 
+      sidebar = {
+        enable = true;
+        format = "%D%?F? [%F]?%* %?N?%N/? %?S?%S?";
+        width = 20;
+        shortPath = true;
+      };
+
+      settings = {
+        imap_check_subscribed = "yes";
+      };
+
       extraConfig = ''
+        set mailcap_path = ~/.config/neomutt/mailcap # point to mailcap file
         set mime_type_query_command = "file --mime-type -b %s"
         set date_format="%Y/%m/%d %H:%M"
         set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
         set query_command = "abook --mutt-query '%s'"
-        set rfc2047_parameters = yes
+        set rfc2047_parameters = yes # RFC2047 MIME params used by Outlook
         set sleep_time = 0    # Pause 0 seconds for informational messages
         set markers = no    # Disables the `+` displayed at line wraps
         set mark_old = no   # Unread mail stay unread until read
         set mime_forward = yes    # attachments are forwarded with mail
+        set wait_key = no   # mutt won't ask "press key to continue"
+        set fast_reply      # skip to compose when replying
+        set fcc_attach      # save attachments with the body
         set forward_format = "Fwd: %s"  # format of subject when forwarding
         set forward_quote   # include message in forwards
         set reverse_name    # reply as whomever it was to
-        set include     # include message in replies
-
+        set include          # include message in replies
+        set mail_check=60 # to avoid lags using IMAP with some email providers (yahoo for example)
         auto_view text/html # automatically show html (mailcap uses w3m)
         alternative_order text/plain text/enriched text/html
-        set mailcap_path = ~/.config/neomutt/mailcap # point to mailcap file
         auto_view application/pgp-encrypted
+        alternative_order text/plain text/enriched text/html
 
         # Colors
         # gruvbox dark (contrast dark):
@@ -734,19 +780,12 @@
        text/html; w3m -I %{charset} -T text/html; copiousoutput;
     '';
 
-    programs.offlineimap = {
-      enable = true;
-    };
-
-    programs.notmuch = {
-      enable = true;
-    };
-
     programs.abook = {
       enable = true;
     };
 
     programs.mbsync.enable = true;
+    programs.msmtp.enable = true;
 
     services.imapnotify.enable = true;
 
@@ -760,12 +799,18 @@
         smtp.host = "smtp.mailbox.org";
         smtp.port = 465;
         smtp.tls.enable = true;
-        offlineimap.enable = true;
         mbsync.enable = true;
         mbsync.create = "both";
         mbsync.expunge = "both";
-        neomutt.enable = true;
-        notmuch.enable = true;
+        msmtp.enable = true;
+        neomutt = {
+          enable = true;
+          extraConfig = ''
+            unmailboxes *
+            mailboxes =INBOX =Drafts =Sent =Trash
+            macro index R "<shell-escape>mbsync mailbox.org<enter>"
+          '';
+        };
       });
     };
 
