@@ -174,6 +174,7 @@
       w3m
       urlscan
       youtube-dl
+      (texlive.combine { inherit (texlive) scheme-basic enumitem fontawesome etoolbox pgf metafont; })
     ];
 
     gtk = {
@@ -895,6 +896,7 @@
   fonts = {
     fontDir.enable = true;
     fonts = with pkgs; [
+      lmodern # latex font
       hack-font
       font-awesome
       dejavu_fonts
