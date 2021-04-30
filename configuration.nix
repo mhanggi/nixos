@@ -452,6 +452,9 @@
 
     programs.bash = {
       enable = true;
+       shellAliases = {
+         vi = "vim";
+       };
     };
 
     programs.password-store = {
