@@ -470,6 +470,9 @@
       userName = "mhanggi";
       userEmail = "29100324+mhanggi@users.noreply.github.com";
       ignores = [ "*~" "*.swp" ];
+      extraConfig = {
+        core = { editor = "vim"; };
+      };
     };
   
     programs.tmux = {
@@ -886,8 +889,10 @@
       enable = true;
       userName = "mhanggi";
       userEmail = "29100324+mhanggi@users.noreply.github.com";
+      extraConfig = {
+        core = { editor = "vim"; };
+      };
     };
-
   };
 
   # List packages installed in system profile. To search, run:
