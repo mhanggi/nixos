@@ -170,7 +170,6 @@
       simple-scan
       neofetch
       sc-im
-      protonmail-bridge
       w3m
       urlscan
       youtube-dl
@@ -623,7 +622,7 @@
       macros = [
         {
           key = "O";
-          action = "<shell-escape>offlineimap<enter>"; # Sync all email
+          action = "<shell-escape>mbsync -a<enter>"; # Sync all email
           map = [ "index" ];
         }
         {
@@ -741,19 +740,24 @@
       enable = true;
     };
 
+    programs.mbsync.enable = true;
+
     services.imapnotify.enable = true;
 
-    accounts.email.accounts = let protonparams = import ./proton-params.nix; in {
-      "protonmail" = (protonparams // {
+    accounts.email.accounts = let params = import ./mailbox-params.nix; in {
+      "mailbox.org" = (params // {
         primary = true;
         folders.inbox = "INBOX";
-        imap.host = "127.0.0.1";
-        imap.port = 1143;
-        imap.tls.enable = false;
-        smtp.host = "127.0.0.1";
-        smtp.port = 1025;
-        smtp.tls.enable = false;
+        imap.host = "imap.mailbox.org";
+        imap.port = 993;
+        imap.tls.enable = true;
+        smtp.host = "smtp.mailbox.org";
+        smtp.port = 465;
+        smtp.tls.enable = true;
         offlineimap.enable = true;
+        mbsync.enable = true;
+        mbsync.create = "both";
+        mbsync.expunge = "both";
         neomutt.enable = true;
         notmuch.enable = true;
       });
