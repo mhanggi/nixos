@@ -110,7 +110,6 @@
   services.tlp.enable = true;
   services.pcscd.enable = true;
 
-  #services.gnome3.gnome-keyring.enable = true;
 
   security.pam.services.swaylock = {
     text = ''
