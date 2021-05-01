@@ -127,12 +127,13 @@
       "/home/marc"
     ];
     exclude = [
+      "/home/*/.cache"
+      "/home/*/.config"
+      "/home/*/Downloads"
       # temporary files created by cargo and `go build`
       "**/target"
       "/home/*/go/bin"
       "/home/*/go/pkg"
-      # Cache folder used by Mozilla
-      "/home/*/.cache"
     ];
     prune.keep = {
       keep-daily = 7;
@@ -147,8 +148,7 @@
     environment.BORG_RSH = "ssh -i /root/borgbackup/ssh_key";
     compression = "auto,lzma";
     startAt = "daily";
- };
-
+  };
 
   security.pam.services.swaylock = {
     text = ''
