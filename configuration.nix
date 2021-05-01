@@ -724,14 +724,29 @@
         color sidebar_divider    color250 color235
         color sidebar_new        color142 color235
 
-        color index color142 color235 ~N
-        color index color108 color235 ~O
-        color index color109 color235 ~P
-        color index color214 color235 ~F
-        color index color175 color235 ~Q
-        color index color167 color235 ~=
-        color index color235 color223 ~T
+        # New Mail
+        color index color66 color235 ~N
+
+        # Deleted Mail
         color index color235 color167 ~D
+
+        # Old Messages
+        color index color223 color235 ~O
+
+        # Read Messages
+        color index color223 color235 ~R
+
+        # Flagged Messages
+        color index color214 color235 ~F
+
+        # Messages which have been replied to
+        color index color175 color235 ~Q
+
+        # Duplicated Messages
+        color index color167 color235 ~=
+
+        # Tagged Messages
+        color index color235 color223 ~T
 
         color header color214 color235 "^(To:|From:)"
         color header color142 color235 "^Subject:"
@@ -922,6 +937,14 @@
     programs.jq.enable = true;
     programs.htop.enable = true;
 
+    xdg = {
+      enable = true;
+      mime.enable = true;
+      userDirs = {
+        enable = true;
+        documents = "\$HOME/documents"; # Does it set root's home dir?
+      };
+    };
   };
 
   home-manager.users.root = {...} : {
