@@ -676,30 +676,25 @@
         shortPath = true;
       };
 
-      settings = {
-        imap_check_subscribed = "yes";
-      };
-
       extraConfig = ''
         set mailcap_path = ~/.config/neomutt/mailcap # point to mailcap file
         set mime_type_query_command = "file --mime-type -b %s"
         set date_format="%Y/%m/%d %H:%M"
         set index_format="%2C %Z %?X?A& ? %D %-15.15F %s (%-4.4c)"
         set query_command = "abook --mutt-query '%s'"
-        set rfc2047_parameters = yes # RFC2047 MIME params used by Outlook
-        set sleep_time = 0    # Pause 0 seconds for informational messages
-        set markers = no    # Disables the `+` displayed at line wraps
-        set mark_old = no   # Unread mail stay unread until read
-        set mime_forward = yes    # attachments are forwarded with mail
-        set wait_key = no   # mutt won't ask "press key to continue"
-        set fast_reply      # skip to compose when replying
-        set fcc_attach      # save attachments with the body
+        set rfc2047_parameters = yes    # RFC2047 MIME params used by Outlook
+        set sleep_time = 0              # Pause 0 seconds for informational messages
+        set markers = no                # Disables the `+` displayed at line wraps
+        set mark_old = no               # Unread mail stay unread until read
+        set mime_forward = yes          # attachments are forwarded with mail
+        set wait_key = no               # mutt won't ask "press key to continue"
+        set fast_reply                  # skip to compose when replying
+        set fcc_attach                  # save attachments with the body
         set forward_format = "Fwd: %s"  # format of subject when forwarding
-        set forward_quote   # include message in forwards
-        set reverse_name    # reply as whomever it was to
-        set include          # include message in replies
-        set mail_check=60 # to avoid lags using IMAP with some email providers (yahoo for example)
-        auto_view text/html # automatically show html (mailcap uses w3m)
+        set forward_quote               # include message in forwards
+        set reverse_name                # reply as whomever it was to
+        set include                     # include message in replies
+        auto_view text/html             # automatically show html (mailcap uses w3m)
         alternative_order text/plain text/enriched text/html
         auto_view application/pgp-encrypted
         alternative_order text/plain text/enriched text/html
