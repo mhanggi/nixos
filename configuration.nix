@@ -122,6 +122,34 @@
       });
   '';
 
+  services.borgbackup.jobs."t560" = {
+    paths = [
+      "/home/marc"
+    ];
+    exclude = [
+      # temporary files created by cargo and `go build`
+      "**/target"
+      "/home/*/go/bin"
+      "/home/*/go/pkg"
+      # Cache folder used by Mozilla
+      "/home/*/.cache"
+    ];
+    prune.keep = {
+      keep-daily = 7;
+      keep-weekly = 4;
+      keep-monthly = 12;
+    };
+    repo = "irh34ju7@irh34ju7.repo.borgbase.com:repo";
+    encryption = {
+      mode = "repokey-blake2";
+      passCommand = "cat /root/borgbackup/passphrase";
+    };
+    environment.BORG_RSH = "ssh -i /root/borgbackup/ssh_key";
+    compression = "auto,lzma";
+    startAt = "daily";
+ };
+
+
   security.pam.services.swaylock = {
     text = ''
       auth include login
