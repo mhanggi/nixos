@@ -536,6 +536,8 @@
     services.gpg-agent.enable = true;
     services.gpg-agent.enableScDaemon = true;
     services.gpg-agent.pinentryFlavor = "curses";
+    services.gpg-agent.enableSshSupport = true;
+    services.gpg-agent.sshKeys = [ "0x8D0AF893B6C583F6" ];
   
     programs.alacritty = {
       enable = true;
