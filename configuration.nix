@@ -655,6 +655,11 @@
           action = "sidebar-toggle-visible";
           map = [ "index" "pager" ];
         }
+        {
+          key = "<Tab>";
+          action = "complete-query";
+          map = [ "editor" ];
+        }
       ];
       macros = [
         {
