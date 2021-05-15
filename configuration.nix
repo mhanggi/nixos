@@ -390,83 +390,111 @@
         }
 
 	window#waybar {
-	    background-color: #282828;
-	    color: #ebdbb2;
-	    transition-property: background-color;
-	    transition-duration: .5s;
+	  background-color: #282828;
+	  color: #ebdbb2;
+	  transition-property: background-color;
+	  transition-duration: .5s;
 	}
 
 	window#waybar.hidden {
-	    opacity: 0.2;
+	  opacity: 0.2;
 	}
 
 	#workspaces button {
-	    padding: 0 5px;
-	    background-color: transparent;
-	    color: #ebdbb2;
-	    border-top: 3px solid transparent;
+	  padding: 0 5px;
+	  background-color: transparent;
+	  color: #ebdbb2;
+	  border-top: 3px solid transparent;
 	}
 
 	/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 	#workspaces button:hover {
-	    background: rgba(0, 0, 0, 0.2);
-	    box-shadow: inherit;
-	    border-top: 3px solid #d79921;
+	  background: rgba(0, 0, 0, 0.2);
+	  box-shadow: inherit;
+	  border-top: 3px solid #d79921;
 	}
 
 	#workspaces button.focused {
-	    background: rgba(255, 255, 255, 0.1);
-	    border-top: 3px solid #d79921;
+	  background: rgba(255, 255, 255, 0.1);
+	  border-top: 3px solid #d79921;
 	}
 
 	#workspaces button.urgent {
-	    background-color: #eb4d4b;
+	  background-color: #eb4d4b;
 	}
 
 	#mode {
-	    background-color: #444;
+	  background-color: #444;
 	}
        
-	#backlight,
-	#battery,
-	#custom-media,
+        #backlight,
+        #battery,
+        #custom-media,
         #clock,
         #disk,
-	#memory,
         #network,
-	#network,
-	#mode,
-	#mpd,
-	#pulseaudio {
-	    padding-left: 2px;
-	    padding-right: 2px;
-	    margin-left: 5px;
-	    margin-right: 5px;
+        #network,
+        #mode,
+        #mpd,
+        #memory,
+        #pulseaudio {
+	  padding-left: 2px;
+	  padding-right: 2px;
+	  margin-left: 5px;
+	  margin-right: 5px;
 	}
 
+        #backlight {
+          color: #d3869b;
+        }
+
+        #battery {
+          color: #83a598;
+        }
+
+        #clock {
+          color: #fabd2f;
+        }
+
+        #disk {
+          color: #b8bb26;
+        }
+
+        #network {
+          color: #b8bb26;
+        }
+
+	#pulseaudio {
+          color: #fb4934;
+        }
+
+        #memory {
+          color: #8ec07c;
+        }
+
 	@keyframes blink {
-	    to {
+	  to {
 		background-color: #ffffff;
 		color: #000000;
 	    }
 	}
 
 	#battery.critical:not(.charging) {
-	    background-color: #f53c3c;
-	    color: #ffffff;
-	    animation-name: blink;
-	    animation-duration: 0.5s;
-	    animation-timing-function: linear;
-	    animation-iteration-count: infinite;
-	    animation-direction: alternate;
+	  background-color: #f53c3c;
+	  color: #ffffff;
+	  animation-name: blink;
+	  animation-duration: 0.5s;
+	  animation-timing-function: linear;
+	  animation-iteration-count: infinite;
+	  animation-direction: alternate;
 	}
 
 	label:focus {
-	    background-color: #000000;
+	  background-color: #000000;
 	}
 
 	#network.disconnected {
-	    background-color: #f53c3c;
+	  background-color: #f53c3c;
 	}
 
 	#pulseaudio.muted {
