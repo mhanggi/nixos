@@ -304,7 +304,7 @@
               all-outputs = true;
             };
             "mpd" = {
-              format = " {title}";
+              format = "  {title}i - {artist}";
             };
             "clock" = {
               format = " {:%a, %d %b %Y - %H:%M}";
