@@ -177,7 +177,6 @@
     };
 
     home.stateVersion = "21.03";
-
     home.sessionPath = [
       "~/.local/bin"
     ];
