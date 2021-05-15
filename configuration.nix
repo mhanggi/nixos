@@ -246,9 +246,9 @@
         terminal = "alacritty";
         menu = "rofi -show drun";
 
-        window.border = 2;
+        window.border = 1;
         gaps.smartBorders = "off";
-        gaps.smartGaps = true;
+        gaps.smartGaps = false;
         gaps.inner = 5;
 
         # it seems the child border defines the color
