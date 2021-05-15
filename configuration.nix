@@ -127,6 +127,7 @@
       "/home/marc"
     ];
     exclude = [
+      "/home/*/Maildir"
       "/home/*/.cache"
       "/home/*/.config"
       "/home/*/Downloads"
