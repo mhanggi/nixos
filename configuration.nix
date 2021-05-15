@@ -202,6 +202,8 @@
       urlscan
       youtube-dl
       (texlive.combine { inherit (texlive) scheme-basic enumitem fontawesome etoolbox pgf metafont; })
+      cdrkit
+      picard
     ];
 
     gtk = {
