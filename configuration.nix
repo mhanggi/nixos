@@ -294,7 +294,7 @@
       enable = true;
       settings = [
         {
-          modules-left = [ "sway/workspaces" ];
+          modules-left = [ "sway/workspaces" "custom/sep" "mpd" ];
           modules-center = ["clock"];
           modules-right = [ "pulseaudio" "custom/sep" "memory" "custom/sep" "disk" "custom/sep" "backlight" "custom/sep" "battery" "custom/sep" "battery#bat1" "custom/sep" "network" ];
 
@@ -303,7 +303,10 @@
               disable-scroll = true;
               all-outputs = true;
             };
-            clock = {
+            "mpd" = {
+              format = " {title}";
+            };
+            "clock" = {
               format = " {:%a, %d %b %Y - %H:%M}";
               format-alt = " {:Week %OV - %Y}";
               tooltip = false;
@@ -378,10 +381,10 @@
 
       style = ''
         * {
-            border: none;
-            border-radius: 0;
-            font-family: monospace;
-            font-size: 14px;
+          border: none;
+          border-radius: 0;
+          font-family: monospace;
+          font-size: 12px;
         }        
 
         window#waybar {
