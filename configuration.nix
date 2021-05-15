@@ -641,6 +641,12 @@
             "media.ffvpx.enabled" = false;
           };
           userChrome = builtins.readFile conf.d/userChrome.css;
+          userContent = ''
+            html,body{
+              scrollbar-color: #928374 #3c3836 !important;
+              scrollbar-width: thin;
+            }
+          '';
         };
       };
     };
