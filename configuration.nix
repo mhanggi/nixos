@@ -137,9 +137,9 @@
       "/home/*/go/pkg"
     ];
     prune.keep = {
-      keep-daily = 7;
-      keep-weekly = 4;
-      keep-monthly = 12;
+      daily = 7;
+      weekly = 4;
+      monthly = 12;
     };
     repo = "irh34ju7@irh34ju7.repo.borgbase.com:repo";
     encryption = {
