@@ -200,7 +200,7 @@
       w3m
       urlscan
       youtube-dl
-      (texlive.combine { inherit (texlive) scheme-basic collection-langgerman enumitem fontawesome etoolbox pgf metafont; })
+      (texlive.combine { inherit (texlive) scheme-small collection-langgerman enumitem fontawesome etoolbox pgf metafont; })
       xdg-utils
       cdrkit
       picard
