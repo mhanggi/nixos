@@ -653,7 +653,7 @@
 
     programs.rofi = {
       enable = true;
-      package = pkgs.nur.repos.metadark.rofi-wayland; # rofi with wayland support
+      package = pkgs.nur.repos.kira-bruneau.rofi-wayland; # rofi with wayland support
       pass.enable = true;
       pass.stores =[ "/home/marc/.password-store" ];
       width = 520;
