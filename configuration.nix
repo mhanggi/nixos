@@ -82,6 +82,7 @@
     ";
   };
 
+  hardware.sane.enable = true;
   hardware.bluetooth.enable = true;
   hardware.trackpoint.enable = true;
   hardware.trackpoint.emulateWheel = true;
@@ -159,7 +160,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.marc = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" "audio" "video" "networkmanager" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "input" "audio" "video" "networkmanager" "scanner" "lp" ]; # Enable ‘sudo’ for the user.
   };
 
   home-manager.users.marc = {...} : {
