@@ -141,7 +141,7 @@
       weekly = 4;
       monthly = 12;
     };
-    repo = "irh34ju7@irh34ju7.repo.borgbase.com:repo";
+    repo = builtins.readFile ./borgbase-t560-repo.nix;
     encryption = {
       mode = "repokey-blake2";
       passCommand = "cat /root/borgbackup/passphrase";
@@ -205,6 +205,7 @@
       xdg-utils
       cdrkit
       picard
+      pdfarranger
     ];
 
     gtk = {
