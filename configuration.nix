@@ -165,6 +165,7 @@
 
   home-manager.users.marc = {...} : {
     programs.home-manager.enable = true;
+    nixpkgs.config.allowUnfree = true;
 
     home.sessionVariables = {
       EDITOR = "vim";
@@ -1012,6 +1013,26 @@
 
     programs.jq.enable = true;
     programs.htop.enable = true;
+
+    programs.vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        bbenoist.nix
+        golang.go
+        matklad.rust-analyzer
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+	name = "gruvbox";
+	publisher = "jdinhlife";
+	version = "1.5.0";
+	sha256 = "14dm19bwlpmvarcxqn0a7yi1xgpvp93q6yayvqkssravic0mwh3g";
+      }];
+
+      userSettings = {
+        "workbench.colorTheme" = "Gruvbox Dark Medium";
+      };
+
+    };
 
     xdg = {
       enable = true;
