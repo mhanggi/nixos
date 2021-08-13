@@ -141,7 +141,7 @@
       weekly = 4;
       monthly = 12;
     };
-    repo = builtins.readFile ./borgbase-t560-repo.nix;
+    repo = builtins.readFile ./secrets/borgbase-t560-repo.nix;
     encryption = {
       mode = "repokey-blake2";
       passCommand = "cat /root/borgbackup/passphrase";
@@ -877,7 +877,7 @@
 
     services.imapnotify.enable = true;
 
-    accounts.email.accounts = let params = import ./mailbox-params.nix; in {
+    accounts.email.accounts = let params = import ./secrets/mailbox-params.nix; in {
       "mailbox.org" = (params // {
         primary = true;
         folders.inbox = "INBOX";
