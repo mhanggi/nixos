@@ -206,8 +206,8 @@
       xdg-utils
       cdrkit
       picard
-      pdfarranger
       git-crypt
+      #pdfarranger
     ];
 
     gtk = {
