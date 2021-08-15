@@ -5,15 +5,16 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-  #  flake-utils.url = "github:numtide/flake-utils";
+    nur.url = github:nix-community/NUR;
   };
 
-  outputs = { nixpkgs, home-manager, ... }: 
+  outputs = { nixpkgs, home-manager, nur, ... }:
   let
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
+      overlays = [ nur.overlay ];
     };
 
     lib = nixpkgs.lib;
@@ -25,7 +26,7 @@
         username = "marc";
         homeDirectory = "/home/marc";
         configuration = {
-          import = [ ./users/marc/home.nix ];
+          imports = [ ./users/marc/home.nix ];
         };
       };
     };

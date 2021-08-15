@@ -17,6 +17,6 @@ if ! unlockSecrets; then
     exit 1
 fi
 
-sudo nixos-rebuild switch --flake '.#'
+nix build .#homeManagerConfigurations.marc.activationPackage && ./result/activate
 
 popd > /dev/null

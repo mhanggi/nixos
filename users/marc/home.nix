@@ -3,10 +3,6 @@
 {
     programs.home-manager.enable = true;
 
-    home.stateVersion = "21.03";
-    home.username = "marc";
-    home.homeDirectory = "/home/marc";
-
     home.sessionVariables = {
       EDITOR = "vim";
       BROWSER = "firefox";
@@ -881,6 +877,5 @@
         documents = "\$HOME/documents"; # Does it set root's home dir?
       };
     };
-  };
 
 }
