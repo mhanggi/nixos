@@ -15,16 +15,6 @@
     experimental-features = nix-command flakes
   '';
 
-#  nixpkgs.config.packageOverrides = pkgs: {
-#    nur = import (builtins.fetchTarball {
-#      url = "https://github.com/nix-community/NUR/archive/master.tar.gz"; 
-#      #sha256 = "1jf5rdxyqk6q8x4x81n15bnn0z0158y2g9wnl2d2yxxv15rgdlbi";
-#    }){
-#      inherit pkgs;
-#    };
-#  };
-
-  # Set some package configs
   nixpkgs.config.pulseaudio = true;
   nixpkgs.config.wayland = true;
   nixpkgs.config.allowUnfree = true;
