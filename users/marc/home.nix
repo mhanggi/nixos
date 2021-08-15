@@ -42,7 +42,7 @@
     cdrkit
     picard
     git-crypt
-    #pdfarranger
+    pdfarranger
   ];
 
   gtk = {
