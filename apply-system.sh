@@ -17,6 +17,6 @@ if ! unlockSecrets; then
     exit 1
 fi
 
-sudo nixos-rebuild switch -I nixos-config=./configuration.nix
-popd > /dev/null
+sudo nixos-rebuild switch --flake .#
 
+popd > /dev/null
