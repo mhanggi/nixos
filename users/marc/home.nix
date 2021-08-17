@@ -407,9 +407,10 @@
           "media.ffvpx.enabled" = false;
         };
         userChrome = builtins.readFile conf.d/userChrome.css;
-        userContent = ''
+        userContent = let gruvbox = import ./gruvbox.nix; in 
+        ''
           html,body{
-            scrollbar-color: #928374 #3c3836 !important;
+            scrollbar-color: ${gruvbox.gray8} ${gruvbox.bg1} !important;
             scrollbar-width: thin;
           }
         '';
@@ -429,21 +430,21 @@
     separator = "none";
     borderWidth = 1;
     scrollbar = false;
-    colors = {
+    colors = let gruvbox = import ./gruvbox.nix; in {
       window = {
-        background = "#282828";
-        border = "#ebdbb2";
-        separator = "#ebdbb2";
+        background = "${gruvbox.bg0}";
+        border = "${gruvbox.fg1}";
+        separator = "${gruvbox.fg1}";
       };
 
       rows = {
         normal = {
-          background = "#282828";
-          foreground = "#ebdbb2";
-          backgroundAlt = "#282828";
+          background = "${gruvbox.bg0}";
+          foreground = "${gruvbox.fg1}";
+          backgroundAlt = "${gruvbox.bg0}";
           highlight = {
-            background = "#d79921";
-            foreground = "#282828";
+            background = "${gruvbox.yellow3}";
+            foreground = "${gruvbox.bg0}";
           };
         };
       };
