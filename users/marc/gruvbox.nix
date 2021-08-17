@@ -24,4 +24,6 @@
   blue12 =  "#83a598";
   purple13 = "#d3869b";
   aqua14 =  "#8ec07c";
+  orange106 = "#d65d0e";
+  orange208 = "#fe8019";
 }
