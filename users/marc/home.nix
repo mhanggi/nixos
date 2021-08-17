@@ -130,7 +130,13 @@
     };
   };
 
-  programs.waybar = {
+  programs.waybar = let 
+    bg0 = "#282828";
+    bg2 = "#504945";
+    fg2 = "#d5c4a1";
+    aqua14 = "#689d6a";
+    yellow3 ="#d79921";
+  in {
     enable = true;
     settings = [
       {
@@ -144,11 +150,11 @@
             all-outputs = true;
           };
           "mpd" = {
-            format = "<span background=\"#689d6a\" foreground=\"#282828\">  </span> {title}i - {artist}";
+            format = "<span background=\"${aqua14}\" foreground=\"${bg0}\">  </span> {title}i - {artist}";
           };
           "clock" = {
-            format = "<span background=\"#d79921\" foreground=\"#282828\">  </span> {:%a, %d %b %Y - %H:%M}";
-            format-alt = "<span background=\"#d79921\" foreground=\"#282828\">  </span> {:Week %OV - %Y}";
+            format = "<span background=\"${yellow3}\" foreground=\"${bg0}\">  </span> {:%a, %d %b %Y - %H:%M}";
+            format-alt = "<span background=\"${yellow3}\" foreground=\"${bg0}\">  </span> {:Week %OV - %Y}";
             tooltip = false;
           };
           "battery" = {
@@ -157,9 +163,9 @@
               warning = 30;
               critical = 15;
             };
-            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {capacity}%";
-            format-charging = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
-            format-plugged = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
+            format = "<span background=\"${fg2}\" foreground=\"${bg0}\"> {icon} </span> {capacity}%";
+            format-charging = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {capacity}%";
+            format-plugged = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {capacity}%";
             format-alt = "{icon} {time}";
             format-icons = ["" "" "" "" ""];
           };
@@ -169,36 +175,36 @@
               warning = 30;
               critical = 15;
             };
-            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {capacity }%";
+            format = "<span background=\"${fg2}\" foreground=\"${bg0}\"> {icon} </span> {capacity }%";
             format-charging = " {capacity}%";
-            format-plugged = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
+            format-plugged = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {capacity}%";
             format-alt = "{icon} {time}";
             format-icons = ["" "" "" "" ""];
           };
           "backlight" = {
-            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {percent}%";
+            format = "<span background=\"${fg2}\" foreground=\"${bg0}\"> {icon} </span> {percent}%";
             format-icons = [""];
           };
           "disk" = {
             interval = 30;
-            format = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {percentage_used}%";
+            format = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {percentage_used}%";
             path = "/";
           };
           "memory" = {
-            format = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {used:0.1f} GiB";
+            format = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {used:0.1f} GiB";
             tooltip = false;
           };
           "network" = {
-            format-wifi = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {essid} ({signalStrength}%)";
-            format-ethernet = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ipaddr}/{cidr}";
-            format-linked = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ifname} (No IP)";
-            format-disconnected = "<span background=\"#d5c4a1\" foreground=\"#282828\"> ⚠ </span> Disconnected";
+            format-wifi = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {essid} ({signalStrength}%)";
+            format-ethernet = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {ipaddr}/{cidr}";
+            format-linked = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {ifname} (No IP)";
+            format-disconnected = "<span background=\"${fg2}\" foreground=\"${bg0}\"> ⚠ </span> Disconnected";
             tooltip = false;
           };
           "pulseaudio" = {
-             format = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
-             format-bluetooth = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
-             format-muted = "<span background=\"#d5c4a1\" foreground=\"#504945\">  </span> {volume}%";
+             format = "<span background=\"${fg2}\" foreground=\"${bg0}\"> {icon} </span> {volume}%";
+             format-bluetooth = "<span background=\"${fg2}\" foreground=\"${bg0}\"> {icon} </span> {volume}%";
+             format-muted = "<span background=\"${fg2}\" foreground=\"${bg0}\">  </span> {volume}%";
              format-icons = {
                headphone = "";
                hands-free = "";
@@ -223,9 +229,9 @@
       }
 
       window#waybar {
-        background: #282828;
-        background-color: #282828;
-        color: #d5c4a1;
+        background: ${bg0};
+        background-color: ${bg0};
+        color: ${fg2};
         transition-property: background-color;
         transition-duration: .5s;
       }
@@ -237,7 +243,7 @@
       #workspaces button {
         padding: 0 5px;
         background-color: transparent;
-        color: #d5c4a1;
+        color: ${fg2};
         border-top: 3px solid transparent;
       }
 
@@ -245,12 +251,12 @@
       #workspaces button:hover {
         background: rgba(0, 0, 0, 0.2);
         box-shadow: inherit;
-        border-top: 3px solid #d79921;
+        border-top: 3px solid ${yellow3};
       }
 
       #workspaces button.focused {
         background: rgba(255, 255, 255, 0.1);
-        border-top: 3px solid #d79921;
+        border-top: 3px solid ${yellow3};
       }
 
       #backlight,
@@ -263,8 +269,8 @@
       #mpd,
       #memory,
       #pulseaudio {
-        background-color: #504945;
-        color: #d5c4a1;
+        background-color: ${bg2};
+        color: ${fg2};
         padding-left: 0px;
         padding-right: 10px;
         margin-top: 5px;
@@ -275,16 +281,6 @@
 
       #mpd {
         margin-left: 15px;
-      }
-
-      #battery.critical:not(.charging) {
-        background-color: #f53c3c;
-        color: #ffffff;
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
       }
     '';
   };
