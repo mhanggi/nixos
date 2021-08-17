@@ -341,7 +341,7 @@
   services.gpg-agent.enableSshSupport = true;
   services.gpg-agent.sshKeys = [ "0x8D0AF893B6C583F6" ];
 
-  programs.alacritty = {
+  programs.alacritty = let gruvbox = import ./gruvbox.nix; in {
     enable = true;
     settings = {
 
@@ -357,30 +357,30 @@
 
       colors = {
         primary = {
-          background = "0x282828";
-          foreground = "0xdfbf8e";
+          background = "${gruvbox.bg0}";
+          foreground = "${gruvbox.fg1}";
         };
 
         normal = {
-          black =   "0x665c54";
-          red =     "0xea6962";
-          green =   "0xa9b665";
-          yellow =  "0xe78a4e";
-          blue =    "0x7daea3";
-          magenta = "0xd3869b";
-          cyan =    "0x89b482";
-          white =   "0xdfbf8e";
+          black =   "${gruvbox.bg0}";
+          red =     "${gruvbox.red1}";
+          green =   "${gruvbox.green2}";
+          yellow =  "${gruvbox.yellow3}";
+          blue =    "${gruvbox.blue4}";
+          magenta = "${gruvbox.purple5}";
+          cyan =    "${gruvbox.aqua6}";
+          white =   "${gruvbox.fg4}";
         };
 
         bright = {
-          black =   "0x928374";
-          red =     "0xea6962";
-          green =   "0xa9b665";
-          yellow =  "0xe3a84e";
-          blue =    "0x7daea3";
-          magenta = "0xd3869b";
-          cyan =    "0x89b482";
-          white =   "0xdfbf8e";
+          black =   "${gruvbox.gray8}";
+          red =     "${gruvbox.red9}";
+          green =   "${gruvbox.green10}";
+          yellow =  "${gruvbox.yellow11}";
+          blue =    "${gruvbox.blue12}";
+          magenta = "${gruvbox.purple13}";
+          cyan =    "${gruvbox.aqua14}";
+          white =   "${gruvbox.fg1}";
         };
       };
     };
