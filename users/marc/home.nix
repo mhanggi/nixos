@@ -176,8 +176,8 @@
             format-icons = ["" "" "" "" ""];
           };
           "backlight" = {
-            format = "{icon} {percent}%";
-            format-icons = ["<span background=\"#d5c4a1\" foreground=\"#282828\">  </span>"];
+            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {percent}%";
+            format-icons = [""];
           };
           "disk" = {
             interval = 30;
@@ -193,13 +193,12 @@
             format-ethernet = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ipaddr}/{cidr}";
             format-linked = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ifname} (No IP)";
             format-disconnected = "<span background=\"#d5c4a1\" foreground=\"#282828\"> ⚠ </span> Disconnected";
-            format-alt = "{ifname}: {ipaddr}/{cidr}";
             tooltip = false;
           };
           "pulseaudio" = {
              format = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
              format-bluetooth = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
-             format-muted = "<span background=\"#d5c4a1\" foreground=\"#504945\">  </span> {volume}";
+             format-muted = "<span background=\"#d5c4a1\" foreground=\"#504945\">  </span> {volume}%";
              format-icons = {
                headphone = "";
                hands-free = "";
@@ -225,9 +224,6 @@
 
       window#waybar {
         background: #282828;
-      }
-
-      window#waybar {
         background-color: #282828;
         color: #d5c4a1;
         transition-property: background-color;
@@ -257,10 +253,6 @@
         border-top: 3px solid #d79921;
       }
 
-      #workspaces button.urgent {
-        background-color: #eb4d4b;
-      }
-
       #backlight,
       #battery,
       #custom-media,
@@ -285,13 +277,6 @@
         margin-left: 15px;
       }
 
-      @keyframes blink {
-        to {
-          background-color: #ffffff;
-          color: #000000;
-        }
-      }
-
       #battery.critical:not(.charging) {
         background-color: #f53c3c;
         color: #ffffff;
@@ -301,18 +286,6 @@
         animation-iteration-count: infinite;
         animation-direction: alternate;
       }
-
-      label:focus {
-        background-color: #000000;
-      }
-
-      #network.disconnected {
-        background-color: #f53c3c;
-      }
-
-      #pulseaudio.muted {
-      }
-
     '';
   };
 
