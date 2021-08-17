@@ -134,9 +134,9 @@
     enable = true;
     settings = [
       {
-        modules-left = [ "sway/workspaces" "custom/sep" "mpd" ];
+        modules-left = [ "sway/workspaces" "mpd" ];
         modules-center = ["clock"];
-        modules-right = [ "pulseaudio" "custom/sep" "memory" "custom/sep" "disk" "custom/sep" "backlight" "custom/sep" "battery" "custom/sep" "battery#bat1" "custom/sep" "network" ];
+        modules-right = [ "pulseaudio" "memory" "disk" "backlight" "battery" "battery#bat1" "network" ];
 
         modules = {
           "sway/workspaces" = {
@@ -144,11 +144,11 @@
             all-outputs = true;
           };
           "mpd" = {
-            format = "  {title}i - {artist}";
+            format = "<span background=\"#689d6a\" foreground=\"#282828\">  </span> {title}i - {artist}";
           };
           "clock" = {
-            format = " {:%a, %d %b %Y - %H:%M}";
-            format-alt = " {:Week %OV - %Y}";
+            format = "<span background=\"#d79921\" foreground=\"#282828\">  </span> {:%a, %d %b %Y - %H:%M}";
+            format-alt = "<span background=\"#d79921\" foreground=\"#282828\">  </span> {:Week %OV - %Y}";
             tooltip = false;
           };
           "battery" = {
@@ -157,9 +157,9 @@
               warning = 30;
               critical = 15;
             };
-            format = "{icon} {capacity}%";
-            format-charging = " {capacity}%";
-            format-plugged = " {capacity}%";
+            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {capacity}%";
+            format-charging = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
+            format-plugged = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
             format-alt = "{icon} {time}";
             format-icons = ["" "" "" "" ""];
           };
@@ -169,35 +169,37 @@
               warning = 30;
               critical = 15;
             };
-            format = "{icon} {capacity}%";
+            format = "<span background=\"#d5c4a1\" foreground=\"#282828\"> {icon} </span> {capacity }%";
             format-charging = " {capacity}%";
-            format-plugged = " {capacity}%";
+            format-plugged = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {capacity}%";
             format-alt = "{icon} {time}";
             format-icons = ["" "" "" "" ""];
           };
           "backlight" = {
             format = "{icon} {percent}%";
-            format-icons = [""];
+            format-icons = ["<span background=\"#d5c4a1\" foreground=\"#282828\">  </span>"];
           };
           "disk" = {
             interval = 30;
-            format = " {percentage_used}%";
+            format = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {percentage_used}%";
             path = "/";
           };
           "memory" = {
-            format = " {used:0.1f} GiB";
+            format = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {used:0.1f} GiB";
+            tooltip = false;
           };
           "network" = {
-            format-wifi = " {essid} ({signalStrength}%)";
-            format-ethernet = " {ipaddr}/{cidr}";
-            format-linked = " {ifname} (No IP)";
-            format-disconnected = "⚠ Disconnected";
+            format-wifi = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {essid} ({signalStrength}%)";
+            format-ethernet = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ipaddr}/{cidr}";
+            format-linked = "<span background=\"#d5c4a1\" foreground=\"#282828\">  </span> {ifname} (No IP)";
+            format-disconnected = "<span background=\"#d5c4a1\" foreground=\"#282828\"> ⚠ </span> Disconnected";
             format-alt = "{ifname}: {ipaddr}/{cidr}";
+            tooltip = false;
           };
           "pulseaudio" = {
-             format = "{icon} {volume}%";
-             format-bluetooth = "{icon} {volume}%";
-             format-muted = "";
+             format = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
+             format-bluetooth = "<span background=\"#d5c4a1\" foreground=\"#504945\"> {icon} </span> {volume}%";
+             format-muted = "<span background=\"#d5c4a1\" foreground=\"#504945\">  </span> {volume}";
              format-icons = {
                headphone = "";
                hands-free = "";
@@ -205,15 +207,9 @@
                phone = "";
                portable = "";
                car = "";
-               default = ["" ""];
+               default = [""];
              };
              scroll-step = 1;
-             on-click = "pavucontrol";
-          };
-          "custom/sep" = {
-             format = "|";
-             interval = "once";
-             tooltip = false;
           };
         };
       }
@@ -228,13 +224,12 @@
       }
 
       window#waybar {
-        background: #16191C;
-        color: #AAB2BF;
+        background: #282828;
       }
 
       window#waybar {
         background-color: #282828;
-        color: #ebdbb2;
+        color: #d5c4a1;
         transition-property: background-color;
         transition-duration: .5s;
       }
@@ -246,7 +241,7 @@
       #workspaces button {
         padding: 0 5px;
         background-color: transparent;
-        color: #ebdbb2;
+        color: #d5c4a1;
         border-top: 3px solid transparent;
       }
 
@@ -266,53 +261,28 @@
         background-color: #eb4d4b;
       }
 
-      #mode {
-        background-color: #444;
-      }
-
       #backlight,
       #battery,
       #custom-media,
       #clock,
       #disk,
       #network,
-      #network,
       #mode,
       #mpd,
       #memory,
       #pulseaudio {
-        padding-left: 2px;
-        padding-right: 2px;
+        background-color: #504945;
+        color: #d5c4a1;
+        padding-left: 0px;
+        padding-right: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
         margin-left: 5px;
         margin-right: 5px;
       }
 
-      #backlight {
-        color: #d3869b;
-      }
-
-      #battery {
-        color: #83a598;
-      }
-
-      #clock {
-        color: #fabd2f;
-      }
-
-      #disk {
-        color: #b8bb26;
-      }
-
-      #network {
-        color: #b8bb26;
-      }
-
-      #pulseaudio {
-        color: #fb4934;
-      }
-
-      #memory {
-        color: #8ec07c;
+      #mpd {
+        margin-left: 15px;
       }
 
       @keyframes blink {
@@ -343,10 +313,6 @@
       #pulseaudio.muted {
       }
 
-      #custom-separator {
-        color: #1B5E20;
-        margin: 0 5px;
-      }
     '';
   };
 
