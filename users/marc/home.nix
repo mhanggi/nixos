@@ -29,6 +29,7 @@
     gruvbox-dark-icons-gtk
     dconf # required for home-manager gtk.*
     mako # notification daemon
+    libnotify
     imv
     bc
     simple-scan
@@ -92,37 +93,37 @@
       gaps.inner = 5;
 
       # it seems the child border defines the color
-      colors = {
+      colors = let gruvbox = import ./gruvbox.nix; in {
         focused = {
-          border = "#d5c4a1"; # fg-2
-          background = "#282828"; # bg-0
-          text = "#ebdbb2"; # fg-1
-          indicator = "#d5c4a1"; # fg-2
-          childBorder = "#d5c4a1"; # fg-2
+          border = "${gruvbox.fg2}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.fg2}";
+          childBorder = "${gruvbox.fg2}";
         };
 
         unfocused = {
-          border = "#7c6f64"; # bg-4
-          background = "#282828"; # bg-0
-          text = "#ebdbb2"; # fg-1
-          indicator = "#7c6f64"; # bg-4
-          childBorder = "#7c6f64"; # bg-4
+          border = "${gruvbox.bg4}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.bg4}";
+          childBorder = "${gruvbox.bg4}";
         };
 
         focusedInactive = {
-          border = "#7c6f64"; # bg-4
-          background = "#282828"; # bg-0
-          text = "#ebdbb2"; # fg-1
-          indicator = "#7c6f64"; # bg-4
-          childBorder = "#7c6f64"; # bg-4
+          border = "${gruvbox.bg4}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.bg4}";
+          childBorder = "${gruvbox.bg4}";
         };
 
         urgent = {
-          border = "#cc241d"; # red-1
-          background = "#282828"; # bg-0
-          text = "#ee0000"; # fg-1
-          indicator = "#cc241d"; # red-1
-          childBorder = "#cc241d"; # red-1
+          border = "${gruvbox.red1}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.red1}";
+          childBorder = "${gruvbox.red1}";
         };
       };
 
