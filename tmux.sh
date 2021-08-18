@@ -38,28 +38,30 @@ if [ $? != 0 ]
 then
   new_session 'system'
 
-  send_keys $session 'cd ~/config'
+  send_keys $session "cd ~/config && vim system/configuration.nix"
   send_keys $session "vim system/configuration.nix"
 
   split_horizontally
   select_layout "main-vertical"
-  send_keys "$session:1.2" "cd ~/config"
+  send_keys "$session:system.2" "cd ~/config"
 
   split_vertically
-  send_keys "$session:1.3" "man configuration.nix"
+  send_keys "$session:system.3" "man configuration.nix"
+
+  tmux select-pane -t 1
   
   new_window "home"
-  send_keys "$session:2.1" "cd ~/config/users/marc"
-  send_keys "$session:2.1" "vim home.nix"
+  send_keys "$session:home.1" "cd ~/config && vim users/marc/home.nix"
 
   split_horizontally
   select_layout "main-vertical"
-  send_keys "$session:2.2" "cd ~/config/users/marc"
+  send_keys "$session:home.2" "cd ~/config"
 
   split_vertically
-  send_keys "$session:2.3" "man home-configuration.nix"
+  send_keys "$session:home.3" "man home-configuration.nix"
+  tmux select-pane -t 1
 
-  tmux select-window -t "$session:1"
+  tmux select-window -t "$session:system"
 fi
 
 tmux attach -t $session
