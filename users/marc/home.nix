@@ -304,6 +304,10 @@
     extraConfig = {
       core = { editor = "vim"; };
     };
+    signing = {
+      key = "8F78DF81034CE6D8";
+      signByDefault = true;
+    };
   };
 
   programs.tmux = {
