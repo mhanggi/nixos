@@ -142,7 +142,7 @@
     };
     environment.BORG_RSH = "ssh -i /root/borgbackup/ssh_key";
     compression = "auto,lzma";
-    startAt = "daily";
+    startAt = ["0/2:00:00"]; #every two hours
   };
 
   security.pam.services.swaylock = {
