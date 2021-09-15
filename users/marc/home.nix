@@ -44,6 +44,8 @@
     picard
     git-crypt
     pdfarranger
+    obsidian
+    catdocx
   ];
 
   gtk = {
