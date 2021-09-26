@@ -72,10 +72,13 @@
       ];
 
       assigns = {
+        "1" = [{ title = "tmux"; }];
         "2" = [{ app_id = "firefox"; }];
         "3" = [{ class = "obsidian"; }];
-        "4" = [{ class = "code"; }];
-        "5" = [{ app_id = "org.pwmt.zathura"; }];
+        "4" = [{ class = "Code"; }]; # Visual Studio Code
+        "5" = [{ title = "neomutt"; } { title = "newsboat"; }];
+        "6" = [{ app_id = "org.pwmt.zathura"; }];
+        "9" = [{ title = "ncmpcpp"; }];
       };
 
       keybindings = pkgs.lib.mkOptionDefault {
@@ -159,8 +162,8 @@
               "2" = ""; # Browser
               "3" = ""; # Obsidian
               "4" = ""; # Code
-              "5" = ""; # PDF
-              "6" = ""; # Random
+              "5" = ""; # Mail & RSS
+              "6" = ""; # PDF
               "7" = ""; # Random
               "8" = ""; # Random
               "9" = ""; # Music
@@ -830,6 +833,41 @@
     userDirs = {
       enable = true;
       documents = "\$HOME/documents"; # Does it set root's home dir?
+    };
+
+    desktopEntries = {
+      tmux = {
+        name = "Tmux";
+        genericName = "Terminal Multiplexer";
+        exec = "alacritty -t tmux -e tmux";
+        terminal = false;
+        categories = [ "Development" "Utility" ];
+        icon = "utilities-terminal";
+      };
+      ncmpcpp = {
+        name = "ncmpcpp";
+        genericName = "Music Player";
+        exec = "alacritty -t ncmpcpp -e ncmpcpp";
+        terminal = false;
+        categories = [ "Audio" ];
+        icon = "utilities-terminal";
+      };
+      newsboat = {
+        name = "Newsboat";
+        genericName = "RSS Feed Reader";
+        exec = "alacritty -t newsboat -e newsboat";
+        terminal = false;
+        categories = [ "Utility" ];
+        icon = "utilities-terminal";
+      };
+      neomutt = {
+        name = "Neomutt";
+        genericName = "Mail User Agent";
+        exec = "alacritty -t neomutt -e neomutt";
+        terminal = false;
+        categories = [ "Utility" ];
+        icon = "utilities-terminal";
+      };
     };
   };
 
