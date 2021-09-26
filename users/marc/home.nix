@@ -71,6 +71,13 @@
         { command = "waybar"; }
       ];
 
+      assigns = {
+        "2" = [{ app_id = "firefox"; }];
+        "3" = [{ class = "obsidian"; }];
+        "4" = [{ class = "code"; }];
+        "5" = [{ app_id = "org.pwmt.zathura"; }];
+      };
+
       keybindings = pkgs.lib.mkOptionDefault {
         "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
         "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
@@ -146,6 +153,18 @@
           "sway/workspaces" = {
             disable-scroll = true;
             all-outputs = true;
+            format = "{name}: {icon}";
+            format-icons = {
+              "1" = ""; # Terminal
+              "2" = ""; # Browser
+              "3" = ""; # Obsidian
+              "4" = ""; # Code
+              "5" = ""; # PDF
+              "6" = ""; # Random
+              "7" = ""; # Random
+              "8" = ""; # Random
+              "9" = ""; # Music
+            };
           };
           "mpd" = {
             format = "<span background=\"${gruvbox.aqua14}\" foreground=\"${gruvbox.bg0}\">  </span> {title}i - {artist}";
