@@ -749,6 +749,7 @@
       { title = "hackernews"; tags = [ "IT" ] ; url = "https://news.ycombinator.com/rss"; }
       { title = "golem.de"; tags = [ "IT" ] ; url = "https://www.golem.de/rss"; }
       { title = "srf.ch"; tags = [ "News" ] ; url = "https://www.srf.ch/news/bnf/rss/1646"; }
+      { title = "blog.cleancoder.com"; tags = [ "IT" ] ; url = "https://blog.cleancoder.com/atom.xml"; }
     ];
     extraConfig = ''
       bind-key j down
