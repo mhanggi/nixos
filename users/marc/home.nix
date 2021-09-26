@@ -299,6 +299,16 @@
         margin-right: 5px;
       }
 
+      #battery.discharging {
+        background: ${gruvbox.green10};
+        color: ${gruvbox.bg0};
+      }
+
+      #battery.critical {
+        background: ${gruvbox.red9};
+        color: ${gruvbox.bg0};
+      }
+
       #mpd {
         margin-left: 15px;
       }
