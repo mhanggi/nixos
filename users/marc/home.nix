@@ -28,7 +28,6 @@
     gnome3.adwaita-icon-theme # to prevent GTK warnings
     gruvbox-dark-icons-gtk
     dconf # required for home-manager gtk.*
-    mako # notification daemon
     libnotify
     imv
     bc
@@ -313,6 +312,20 @@
         margin-left: 15px;
       }
     '';
+  };
+
+  programs.mako =  let gruvbox = import ./gruvbox.nix; in {
+    enable = true;
+    anchor = "top-right";
+    backgroundColor = "${gruvbox.bg2}";
+    borderColor = "${gruvbox.fg2}";
+    borderSize = 1;
+    textColor = "${gruvbox.fg2}";
+    margin = "2,1,5";
+    padding = "10,10,5,5";
+    defaultTimeout = 2000;
+    icons = true; 
+    format = "<span background=\"${gruvbox.blue12}\" foreground=\"${gruvbox.bg0}\">  </span> %s";
   };
 
   programs.bash = {
