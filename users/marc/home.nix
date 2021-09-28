@@ -45,6 +45,7 @@
     pdfarranger
     obsidian
     catdocx
+    unzip
   ];
 
   gtk = {
