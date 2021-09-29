@@ -46,6 +46,7 @@
     obsidian
     catdocx
     unzip
+    myrmidon
   ];
 
   gtk = {
@@ -895,5 +896,7 @@
       };
     };
   };
+
+  home.file.".config/myrmidon/tasks.json".source = ./conf.d/myrmidon.json;
 
 }

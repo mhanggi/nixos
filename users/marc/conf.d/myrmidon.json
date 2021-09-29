@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Area screenshot",
+    "command": "gnome-screenshot -a",
+    "confirm": true
+  },
+  {
+    "name": "Mute",
+    "command": "pactl set-sink-mute @DEFAULT_SINK@ true",
+    "notification": "Audio muted"
+  },
+  {
+    "name": "NixOS Garbage Collect",
+    "command": "alacritty -e bash -c 'sudo nix-collect-garbage -d'",
+    "confirm": true
+  },
+  {
+    "name": "Unmute",
+    "command": "pactl set-sink-mute @DEFAULT_SINK@ false",
+    "notification": "Audio unmuted"
+  },
+  {
+    "name": "Power off",
+    "confirm": true,
+    "command": "systemctl poweroff"
+  },
+  {
+    "name": "Reboot",
+    "confirm": true,
+    "command": "systemctl reboot"
+  },
+  {
+    "name": "Reset GPG Agent",
+    "command": "gpg-connect-agent updatestartuptty /bye",
+    "notification": "Resetting GPG Agent"
+  },
+  {
+    "name": "Suspend",
+    "confirm": true,
+    "command": "systemctl suspend"
+  },
+  {
+    "name": "Screen lock",
+    "command": "swaylock"
+  },
+  {
+    "name": "Volume down",
+    "command": "pactl -- set-sink-volume 0 -10%",
+    "notification": "Volume decreased"
+  },
+  {
+    "name": "Volume up",
+    "command": "pactl -- set-sink-volume 0 +10%",
+    "notification": "Volume increased"
+  },
+  {
+    "name": "Window screenshot",
+    "command": "gnome-screenshot -w"
+  }
+]
