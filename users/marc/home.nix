@@ -365,6 +365,8 @@
   programs.tmux = {
     enable = true;
     baseIndex = 1;
+    clock24 = true;
+    prefix = "C-a";
     plugins = with pkgs.tmuxPlugins; [ gruvbox prefix-highlight ];
   };
 
