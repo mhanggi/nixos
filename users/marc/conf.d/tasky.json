@@ -2,7 +2,6 @@
   {
     "name": "Area screenshot",
     "command": "gnome-screenshot -a",
-    "confirm": true
   },
   {
     "name": "Mute",
@@ -12,7 +11,6 @@
   {
     "name": "NixOS Garbage Collect",
     "command": "alacritty -e bash -c 'sudo nix-collect-garbage -d'",
-    "confirm": true
   },
   {
     "name": "Unmute",
@@ -21,12 +19,10 @@
   },
   {
     "name": "Power off",
-    "confirm": true,
     "command": "systemctl poweroff"
   },
   {
     "name": "Reboot",
-    "confirm": true,
     "command": "systemctl reboot"
   },
   {
@@ -36,7 +32,6 @@
   },
   {
     "name": "Suspend",
-    "confirm": true,
     "command": "systemctl suspend"
   },
   {
