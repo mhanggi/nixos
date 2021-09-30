@@ -46,7 +46,7 @@
     obsidian
     catdocx
     unzip
-    myrmidon
+    tasky
   ];
 
   gtk = {
@@ -98,7 +98,7 @@
       };
 
       terminal = "alacritty";
-      menu = "rofi -show drun";
+      menu = "rofi -show combi -combi-modi 'drun,task' -modi 'combi,task:tasky' -drun-display-format {name}";
 
       window.border = 1;
       gaps.smartBorders = "off";
@@ -485,6 +485,9 @@
     separator = "none";
     borderWidth = 1;
     scrollbar = false;
+    extraConfig = {
+      combi-hide-mode-prefix = true; # Removes the drun,task prefix
+    };
     colors = let gruvbox = import ./gruvbox.nix; in {
       window = {
         background = "${gruvbox.bg0}";
@@ -897,6 +900,6 @@
     };
   };
 
-  home.file.".config/myrmidon/tasks.json".source = ./conf.d/myrmidon.json;
+  home.file.".config/tasky/tasks.json".source = ./conf.d/tasky.json;
 
 }

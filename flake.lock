@@ -21,40 +21,7 @@
         "type": "github"
       }
     },
-    "myrmidon": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1632925043,
-        "narHash": "sha256-4jVZQJGzh+QSlgXUCz4CVf1Y8aASDL8yeVKGmkzbs3I=",
-        "owner": "mhanggi",
-        "repo": "myrmidon",
-        "rev": "7ff2c2589f42f7b70ecc7cda7e073bc115ef3761",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mhanggi",
-        "repo": "myrmidon",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1632915329,
-        "narHash": "sha256-9jfowYeQdD4BPinCQmpeX6fVm/s96DgrzzcqvJs1ekM=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e68eba2dba2e7b8be6506ea10e467c1e5932bf7a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
       "locked": {
         "lastModified": 1632660378,
         "narHash": "sha256-sjA8eQlnyDjDLyAyq3XlJmN0nqW0ftl/pb7VnMg86L0=",
@@ -67,6 +34,21 @@
         "id": "nixpkgs",
         "ref": "nixos-unstable",
         "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1633003402,
+        "narHash": "sha256-T6nJT8/8wZZ2W51RzKTJgDHEVfGJUaK5IPRLHfRBX04=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "b2da24d2b0232e581a680fd87c996fd1ce008c61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nur": {
@@ -87,9 +69,27 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "myrmidon": "myrmidon",
-        "nixpkgs": "nixpkgs_2",
-        "nur": "nur"
+        "nixpkgs": "nixpkgs",
+        "nur": "nur",
+        "tasky": "tasky"
+      }
+    },
+    "tasky": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1633007283,
+        "narHash": "sha256-Sn15cjxJE7KB9gBGMTGBFJ7wtXV8ovJZkTqMK5EZ4rY=",
+        "owner": "mhanggi",
+        "repo": "tasky",
+        "rev": "3bfffc365816455322dd9c44dd039ed94c78d155",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mhanggi",
+        "repo": "tasky",
+        "type": "github"
       }
     }
   },
