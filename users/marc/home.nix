@@ -352,6 +352,9 @@
     ignores = [ "*~" "*.swp" ];
     extraConfig = {
       core = { editor = "vim"; };
+      init = {
+        defaultBranch = "main";
+      };
     };
     signing = {
       key = "8F78DF81034CE6D8";

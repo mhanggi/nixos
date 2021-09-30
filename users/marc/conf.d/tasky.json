@@ -1,7 +1,7 @@
 [
   {
     "name": "Area screenshot",
-    "command": "gnome-screenshot -a",
+    "command": "gnome-screenshot -a"
   },
   {
     "name": "Mute",
@@ -10,7 +10,7 @@
   },
   {
     "name": "NixOS Garbage Collect",
-    "command": "alacritty -e bash -c 'sudo nix-collect-garbage -d'",
+    "command": "alacritty -e bash -c 'sudo nix-collect-garbage -d'"
   },
   {
     "name": "Unmute",
@@ -18,7 +18,7 @@
     "notification": "Audio unmuted"
   },
   {
-    "name": "Power off",
+    "name": "Shutdown",
     "command": "systemctl poweroff"
   },
   {

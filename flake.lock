@@ -79,11 +79,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1633007283,
-        "narHash": "sha256-Sn15cjxJE7KB9gBGMTGBFJ7wtXV8ovJZkTqMK5EZ4rY=",
+        "lastModified": 1633022708,
+        "narHash": "sha256-uTyllpia9n7W2vw7txbCsI5dwQrQ+Xb6U36ZFjYtIFQ=",
         "owner": "mhanggi",
         "repo": "tasky",
-        "rev": "3bfffc365816455322dd9c44dd039ed94c78d155",
+        "rev": "3ba2b5c62b253d8fcfdaf2bf614d1d39ba043355",
         "type": "github"
       },
       "original": {
