@@ -165,6 +165,7 @@
     cryptsetup
     yubikey-personalization
     pcsclite
+    parted
   ];
 
   fonts = {
