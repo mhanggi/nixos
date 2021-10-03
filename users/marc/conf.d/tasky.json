@@ -49,6 +49,16 @@
     "notification": "Volume increased"
   },
   {
+    "name": "Brightness up",
+    "command": "brightnessctl set +10%",
+    "notification": "Brightness increased"
+  },
+  {
+    "name": "Brightness down",
+    "command": "brightnessctl set 10%-",
+    "notification": "Brightness decreased"
+  },
+  {
     "name": "Window screenshot",
     "command": "gnome-screenshot -w"
   }

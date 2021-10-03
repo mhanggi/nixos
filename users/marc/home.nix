@@ -47,6 +47,8 @@
     catdocx
     unzip
     tasky
+    brightnessctl
+    tree
   ];
 
   gtk = {
@@ -906,5 +908,10 @@
   };
 
   home.file.".config/tasky/tasks.json".source = ./conf.d/tasky.json;
+  home.file."tasks" = {
+    source = ./tasks;
+    target = "tasks";
+    recursive = true;
+  };
 
 }
