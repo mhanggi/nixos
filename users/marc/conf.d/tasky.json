@@ -39,6 +39,11 @@
     "notification": "Resetting GPG Agent"
   },
   {
+    "name": "Start Borg Backup",
+    "command": "alacritty -e bash -c 'sudo systemctl restart borgbackup-job-t560.service'",
+    "notification": "Starting Borg Backup"
+  },
+  {
     "name": "Suspend",
     "command": "systemctl suspend"
   },
