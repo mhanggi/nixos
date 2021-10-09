@@ -75,9 +75,5 @@
     "name": "Connect Bluetooth Speakers (Sony RDP)",
     "command": "bluetoothctl connect C8:84:47:07:CE:2D",
     "notification": "Connecting Speakers"
-  },
-  {
-    "name": "Window screenshot",
-    "command": "gnome-screenshot -w"
   }
 ]
