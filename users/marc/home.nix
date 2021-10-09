@@ -78,7 +78,7 @@
 
       assigns = {
         "1" = [{ title = "tmux"; }];
-        "2" = [{ app_id = "firefox"; }];
+        "2" = [{ app_id = "firefox"; } { instance = "brave-browser"; }];
         "3" = [{ class = "obsidian"; }];
         "4" = [{ class = "Code"; }]; # Visual Studio Code
         "5" = [{ title = "neomutt"; } { title = "newsboat"; }];
@@ -447,6 +447,14 @@
         };
       };
     };
+  };
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.brave;
+    extensions = [
+      "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+    ];
   };
 
   programs.firefox = {
