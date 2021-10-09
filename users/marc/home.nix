@@ -49,6 +49,7 @@
     tasky
     brightnessctl
     tree
+    libreoffice
   ];
 
   gtk = {
