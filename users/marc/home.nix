@@ -50,6 +50,7 @@
     brightnessctl
     tree
     libreoffice
+    anki-bin
   ];
 
   gtk = {
