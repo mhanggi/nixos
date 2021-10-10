@@ -523,6 +523,7 @@
 
       inputbar = {
         children = map mkLiteral [ "prompt" "textbox-prompt-sep" "entry" "case-indicator" ];
+        padding = mkLiteral "5px 0px 5px 0px";
       };
 
       textbox-prompt-sep = {
