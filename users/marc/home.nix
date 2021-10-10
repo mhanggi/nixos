@@ -477,7 +477,7 @@
           "widget.wayland-dmabuf-vaapi.enabled" = true;
           "media.ffvpx.enabled" = false;
         };
-        userChrome = builtins.readFile conf.d/userChrome.css;
+        #userChrome = builtins.readFile conf.d/userChrome.css;
         userContent = let gruvbox = import ./gruvbox.nix; in 
         ''
           html,body{
@@ -495,35 +495,43 @@
     terminal = "${pkgs.alacritty}/bin/alacritty";
     pass.enable = true;
     pass.stores =[ "/home/marc/.password-store" ];
-    width = 520;
-    padding = 10;
-    lines = 18;
     font = "monospace 10";
-    separator = "none";
-    borderWidth = 1;
-    scrollbar = false;
     extraConfig = {
       combi-hide-mode-prefix = true; # Removes the drun,task prefix
     };
-    colors = let gruvbox = import ./gruvbox.nix; in {
-      window = {
-        background = "${gruvbox.bg0}";
-        border = "${gruvbox.fg1}";
-        separator = "${gruvbox.fg1}";
+    theme = let 
+      inherit (config.lib.formats.rasi) mkLiteral;
+      gruvbox = import ./gruvbox.nix;
+    in {
+      "*" = {
+        lines = 18;
+        background-color = mkLiteral "${gruvbox.bg0}";
+        text-color = mkLiteral "${gruvbox.fg1}";
       };
 
-      rows = {
-        normal = {
-          background = "${gruvbox.bg0}";
-          foreground = "${gruvbox.fg1}";
-          backgroundAlt = "${gruvbox.bg0}";
-          highlight = {
-            background = "${gruvbox.yellow3}";
-            foreground = "${gruvbox.bg0}";
-          };
-        };
+      "#window" = {
+        width = 520;
+        padding = 10;
+        border-color = mkLiteral "${gruvbox.fg1}";
+        border = 1;
       };
+
+      "element selected" = {
+        background-color = mkLiteral "${gruvbox.yellow3}";
+        text-color = mkLiteral "${gruvbox.bg0}";
+      };
+
+      inputbar = {
+        children = map mkLiteral [ "prompt" "textbox-prompt-sep" "entry" "case-indicator" ];
+      };
+
+      textbox-prompt-sep = {
+        expand = false;
+        str = ": ";
+      };
+
     };
+
   };
 
   programs.lf = {
