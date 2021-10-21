@@ -521,6 +521,11 @@
         text-color = mkLiteral "${gruvbox.bg0}";
       };
 
+      "element-text, element-icon" = {
+        background-color = mkLiteral "inherit";
+        text-color = mkLiteral "inherit";
+      };
+
       inputbar = {
         children = map mkLiteral [ "prompt" "textbox-prompt-sep" "entry" "case-indicator" ];
         padding = mkLiteral "5px 0px 5px 0px";
