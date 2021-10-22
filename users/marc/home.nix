@@ -887,6 +887,12 @@
 
   };
 
+  # imv
+  home.file.".config/imv/config".text = ''
+    [binds]
+    <Shift+D> = exec rm "$imv_current_file"; close
+  '';
+
   xdg = {
     enable = true;
     mime.enable = true;
