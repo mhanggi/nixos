@@ -55,6 +55,7 @@
     jetbrains.idea-community
     polybar
     killall
+    feh
   ];
 
   gtk = {
@@ -81,6 +82,7 @@
       bars = []; # Empty list removes bar
 
       startup = [
+        { command = "feh --bg-scale ~/wallpapers/5m5kLI9.png"; notification = false; }
         { command = "~/.config/i3/polybar.sh &"; always = true; notification = false; }
       ];
 
