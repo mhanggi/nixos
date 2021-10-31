@@ -189,6 +189,13 @@
     };
   };
 
+
+  services.xserver = {
+    enable = true;
+    displayManager.startx.enable = true;
+    libinput.enable = true;
+  };
+
   system.autoUpgrade.enable = true;
   system.autoUpgrade.allowReboot = true;
   nix.autoOptimiseStore = true;

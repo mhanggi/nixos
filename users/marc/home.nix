@@ -51,6 +51,8 @@
     tree
     libreoffice
     anki-bin
+    exiftool
+    jetbrains.idea-community
   ];
 
   gtk = {
@@ -59,6 +61,94 @@
     theme.name = "gruvbox-dark";
     iconTheme.package = pkgs.gruvbox-dark-icons-gtk;
     iconTheme.name = "oomox-gruvbox-dark";
+  };
+
+  xsession.enable = true;
+  xsession.windowManager.i3 = {
+    enable = true;
+    package = pkgs.i3-gaps;
+
+    config = {
+      modifier = "Mod4";
+
+#      input."*" = {
+#        xkb_layout = "us";
+#        xkb_variant = "altgr-intl";
+#      };
+
+      bars = [{
+        position = "top";
+      }];
+
+      assigns = {
+        "1" = [{ title = "tmux"; }];
+#        "2" = [{ app_id = "firefox"; } { instance = "brave-browser"; }];
+        "3" = [{ class = "obsidian"; }];
+        "4" = [{ class = "Code"; }]; # Visual Studio Code
+        "5" = [{ title = "neomutt"; } { title = "newsboat"; }];
+#        "6" = [{ app_id = "org.pwmt.zathura"; }];
+        "9" = [{ title = "ncmpcpp"; }];
+      };
+
+      keybindings = pkgs.lib.mkOptionDefault {
+        "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+        "XF86Calculator" = "exec alacritty -e bc";
+        "XF86HomePage" = "exec firefox";
+        "XF86Tools" = "exec alacritty -e sudo ~/.local/bin/nixconf.sh"; #FN-F9
+        "XF86Search" = "exec alacritty -e lf"; # FN-F10
+       # "XF86Display" = "exec bla" # FN-F7
+       # "XF86LaunchA" = "exec firefox"; # FN-F11
+       # "XF86Explorer" = "exec alacritty -e lf"; # FN-F12
+       # "Print" = "exec alacritty"; # Print Screen
+      };
+
+      terminal = "alacritty";
+      menu = "\"rofi -show combi -combi-modi 'drun,task' -modi 'combi,task:tasky' -drun-display-format {name}\"";
+
+      window.border = 1;
+      gaps.smartBorders = "off";
+      gaps.smartGaps = false;
+      gaps.inner = 5;
+
+      # it seems the child border defines the color
+      colors = let gruvbox = import ./gruvbox.nix; in {
+        focused = {
+          border = "${gruvbox.fg2}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.fg2}";
+          childBorder = "${gruvbox.fg2}";
+        };
+
+        unfocused = {
+          border = "${gruvbox.bg4}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.bg4}";
+          childBorder = "${gruvbox.bg4}";
+        };
+
+        focusedInactive = {
+          border = "${gruvbox.bg4}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.bg4}";
+          childBorder = "${gruvbox.bg4}";
+        };
+
+        urgent = {
+          border = "${gruvbox.red1}";
+          background = "${gruvbox.bg0}";
+          text = "${gruvbox.fg1}";
+          indicator = "${gruvbox.red1}";
+          childBorder = "${gruvbox.red1}";
+        };
+      };
+
+    };
   };
 
   wayland.windowManager.sway = {
