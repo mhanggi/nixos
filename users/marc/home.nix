@@ -67,6 +67,12 @@
   };
 
   xsession.enable = true;
+
+
+  home.file.".xinitrc".text = ''
+    exec i3
+  '';
+
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.i3-gaps;
