@@ -163,18 +163,21 @@
     };
   };
 
-  home.file.".config/i3/polybar.sh".text = ''
-    #!/usr/bin/env sh
+  home.file.".config/i3/polybar.sh" = {
+    text = ''
+      #!/usr/bin/env sh
 
-    # Terminate already running bar instances
-    killall -q polybar
+      # Terminate already running bar instances
+      killall -q polybar
 
-    # Wait until the processes have been shut down
-    while pgrep -x polybar >/dev/null; do sleep 1; done
+      # Wait until the processes have been shut down
+      while pgrep -x polybar >/dev/null; do sleep 1; done
 
-    # Launch polybar
-    polybar example &
-  '';
+      # Launch polybar
+      polybar example &
+    '';
+   executable = true;
+  };
 
   wayland.windowManager.sway = {
     enable = true;
