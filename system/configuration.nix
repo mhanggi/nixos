@@ -194,6 +194,9 @@
     enable = true;
     layout = "us";
     xkbVariant = "altgr-intl";
+    autorun = false;
+    videoDrivers = [ "modesetting" ];
+    useGlamor = true;
     libinput.enable = true; # Touchpad support
     displayManager.startx.enable = true;
   };
