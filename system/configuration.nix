@@ -192,8 +192,10 @@
 
   services.xserver = {
     enable = true;
+    layout = "us";
+    xkbVariant = "altgr-intl";
+    libinput.enable = true; # Touchpad support
     displayManager.startx.enable = true;
-    libinput.enable = true;
   };
 
   system.autoUpgrade.enable = true;
