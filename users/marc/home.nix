@@ -81,11 +81,6 @@
     config = {
       modifier = "Mod4";
 
-#      input."*" = {
-#        xkb_layout = "us";
-#        xkb_variant = "altgr-intl";
-#      };
-
       bars = []; # Empty list removes bar
 
       startup = [
@@ -95,11 +90,11 @@
 
       assigns = {
         "1" = [{ title = "tmux"; }];
-#        "2" = [{ app_id = "firefox"; } { instance = "brave-browser"; }];
+#       "2" = [{ app_id = "firefox"; } { instance = "brave-browser"; }];
         "3" = [{ class = "obsidian"; }];
         "4" = [{ class = "Code"; }]; # Visual Studio Code
         "5" = [{ title = "neomutt"; } { title = "newsboat"; }];
-#        "6" = [{ app_id = "org.pwmt.zathura"; }];
+#       "6" = [{ app_id = "org.pwmt.zathura"; }];
         "9" = [{ title = "ncmpcpp"; }];
       };
 
