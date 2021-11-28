@@ -1226,7 +1226,7 @@
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
       golang.go
-      matklad.rust-analyzer
+      #matklad.rust-analyzer
     ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "gruvbox";
