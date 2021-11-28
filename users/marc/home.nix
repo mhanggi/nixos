@@ -163,14 +163,6 @@
     enable = true;
     script = "polybar bar &";
     settings = let gruvbox = import ./gruvbox.nix; in {
-      "colors" = {
-        #background = "${gruvbox.bg0}";
-        #background-alt = "#373B41";
-
-        #modules_bg = "#282A2E";
-        #modules_fg = "#C5C8C6";
-      };
-
       "settings" = {
         screenchange-reload = true;
       };
