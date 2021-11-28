@@ -17,6 +17,10 @@
     "command": "/home/marc/tasks/t7.sh unmount"
   },
   {
+    "name": "Archive T7",
+    "command": "alacritty -e bash -c '/home/marc/tasks/backup-t7.sh'"
+  },
+  {
     "name": "NixOS Garbage Collect",
     "command": "alacritty -e bash -c 'sudo nix-collect-garbage -d'"
   },
