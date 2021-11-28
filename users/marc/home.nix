@@ -164,11 +164,11 @@
     script = "polybar bar &";
     settings = let gruvbox = import ./gruvbox.nix; in {
       "colors" = {
-        background = "${gruvbox.bg0}";
-        background-alt = "#373B41";
+        #background = "${gruvbox.bg0}";
+        #background-alt = "#373B41";
 
-        modules_bg = "#282A2E";
-        modules_fg = "#C5C8C6";
+        #modules_bg = "#282A2E";
+        #modules_fg = "#C5C8C6";
       };
 
       "settings" = {
@@ -177,10 +177,7 @@
 
       "bar/base" = {
         background = "${gruvbox.bg0}";
-        #foreground = "${colors.foreground}"; #used?
-
         border-color = "${gruvbox.bg0}";
-        #separator-foreground = "${colors.disabled}";
 
         modules-left = "xworkspaces";
         modules-center = "date";
@@ -202,7 +199,6 @@
         border-right-size = 0;
 
         #font-N = <fontconfig pattern>;<vertical offset>
-        #font-0 = Siji:size=4;2
         font-0 = "monospace:pixelsize=9;3";
         font-1 = "Font Awesome 5 Free Regular:size=10;2";
         font-2 = "Font Awesome 5 Free Solid:size=10;2";
@@ -213,21 +209,21 @@
         type = "internal/xworkspaces";
 
         label-active = "%name%: %icon%";
-        label-active-background = "#373B41";
-        label-active-foreground = "#fabd2f";
+        label-active-background = "${gruvbox.bg2}";
+        label-active-foreground = "${gruvbox.yellow11}";
         label-active-padding = 1;
 
         label-occupied = "%name%: %icon%";
         label-occupied-padding = 1;
-        label-occupied-foreground = "#d5c4a1";
+        label-occupied-foreground = "${gruvbox.fg2}";
 
         label-urgent = "%name%: %icon%";
-        label-urgent-background = "#373B41";
-        label-urgent-foreground = "#d5c4a1";
+        label-urgent-background = "${gruvbox.bg2}";
+        label-urgent-foreground = "${gruvbox.fg2}";
         label-urgent-padding = 1;
 
         label-empty = "%name%: %icon%";
-        label-empty-foreground = "#d5c4a1";
+        label-empty-foreground = "${gruvbox.fg2}";
         label-empty-padding = 1;
 
         icon-0 = "1;";
@@ -249,12 +245,12 @@
         mount-0 = "/";
 
         format-mounted-prefix = "";
-        format-mounted-prefix-background = "#d5c4a1";
-        format-mounted-prefix-foreground = "#282828";
+        format-mounted-prefix-background = "${gruvbox.fg2}";
+        format-mounted-prefix-foreground = "${gruvbox.bg0}";
         format-mounted-prefix-padding = 1;
 
-        label-mounted-background = "#504945";
-        label-mounted-foreground = "#d5c4a1";
+        label-mounted-background = "${gruvbox.bg2}";
+        label-mounted-foreground = "${gruvbox.fg2}";
         label-mounted-padding = 1;
         label-mounted = "%percentage_used%%";
       };
@@ -263,21 +259,21 @@
         type = "internal/pulseaudio";
 
         format-volume-prefix = "";
-        format-volume-prefix-background = "#d5c4a1";
-        format-volume-prefix-foreground = "#282828";
+        format-volume-prefix-background = "${gruvbox.fg2}";
+        format-volume-prefix-foreground = "${gruvbox.bg0}";
         format-volume-prefix-padding = 1;
         label-volume = "%percentage%%";
-        label-volume-background = "#504945";
-        label-volume-foreground = "#d5c4a1";
+        label-volume-background = "${gruvbox.bg2}";
+        label-volume-foreground = "${gruvbox.fg2}";
         label-volume-padding = 1;
 
         format-muted-prefix = "";
-        format-muted-prefix-background = "#d5c4a1";
+        format-muted-prefix-background = "${gruvbox.fg2}";
         format-muted-prefix-foreground = "${gruvbox.bg0}";
         format-muted-prefix-padding = 1;
         label-muted = "%percentage%%";
-        label-muted-background = "#504945";
-        label-muted-foreground = "#d5c4a1";
+        label-muted-background = "${gruvbox.bg2}";
+        label-muted-foreground = "${gruvbox.fg2}";
         label-muted-padding = 1;
       };
 
@@ -286,11 +282,11 @@
         interval = 2;
         format-prefix = "";
         format-prefix-padding = 1;
-        format-prefix-background = "#d5c4a1";
+        format-prefix-background = "${gruvbox.fg2}";
         format-prefix-foreground = "${gruvbox.bg0}";
         label = "%gb_used%";
-        label-background = "#504945";
-        label-foreground = "#d5c4a1";
+        label-background = "${gruvbox.bg2}";
+        label-foreground = "${gruvbox.fg2}";
         label-padding = 1;
       };
 
@@ -308,20 +304,14 @@
         interface-type = "wireless";
 
         label-connected = "%essid% %signal%%";
-        label-connected-background = "#504945";
-        label-connected-foreground = "#d5c4a1";
+        label-connected-background = "${gruvbox.bg2}";
+        label-connected-foreground = "${gruvbox.fg2}";
         label-connected-padding = 1;
 
         format-connected-prefix = "";
         format-connected-prefix-padding = 1;
-        format-connected-prefix-background = "#d5c4a1";
-        format-connected-prefix-foreground = "${gruvbox.bg0}"; #todo
-      };
-
-      "module/eth" = {
-        "inherit" = "network-base";
-        interface-type = "wired";
-        label-connected = "%{F#F0C674}%ifname%%{F-} %local_ip%";
+        format-connected-prefix-background = "${gruvbox.fg2}";
+        format-connected-prefix-foreground = "${gruvbox.bg0}";
       };
 
       "module/date" = {
@@ -334,12 +324,12 @@
         format = "<label>";
         format-prefix = "";
         format-prefix-padding = 1;
-        format-prefix-background = "#d79921";
-        format-prefix-foreground = "${gruvbox.bg0}"; # todo
+        format-prefix-background = "${gruvbox.yellow3}";
+        format-prefix-foreground = "${gruvbox.bg0}";
 
         label = "%date%";
-        label-background = "#504945";
-        label-foreground = "#d5c4a1";
+        label-background = "${gruvbox.bg2}";
+        label-foreground = "${gruvbox.fg2}";
         label-padding = 1;
       };
 
@@ -350,12 +340,12 @@
         format = "<label>";
         format-prefix = "";
         format-prefix-padding = 1;
-        format-prefix-background = "#d5c4a1";
-        format-prefix-foreground = "${gruvbox.bg0}";# todo
+        format-prefix-background = "${gruvbox.fg2}";
+        format-prefix-foreground = "${gruvbox.bg0}";
 
         label = "%percentage%%";
-        label-background = "#504945";
-        label-foreground = "#d5c4a1";
+        label-background = "${gruvbox.bg2}";
+        label-foreground = "${gruvbox.fg2}";
         label-padding = 1;
       };
 
@@ -368,26 +358,26 @@
 
         format-full-prefix = "";
         format-full-prefix-padding = 1;
-        format-full-prefix-background = "#d5c4a1";
+        format-full-prefix-background = "${gruvbox.fg2}";
         format-full-prefix-foreground = "${gruvbox.bg0}";
-        label-full-background = "#504945";
-        label-full-foreground = "#d5c4a1";
+        label-full-background = "${gruvbox.bg2}";
+        label-full-foreground = "${gruvbox.fg2}";
         label-full-padding = 1;
 
         format-charging-prefix = "";
         format-charging-prefix-padding = 1;
-        format-charging-prefix-background = "#d5c4a1";
+        format-charging-prefix-background = "${gruvbox.fg2}";
         format-charging-prefix-foreground = "${gruvbox.bg0}";
-        label-charging-background = "#504945";
-        label-charging-foreground = "#d5c4a1";
+        label-charging-background = "${gruvbox.bg2}";
+        label-charging-foreground = "${gruvbox.fg2}";
         label-charging-padding = 1;
 
         format-discharging-prefix = "";
         format-discharging-prefix-padding = 1;
-        format-discharging-prefix-background = "#d5c4a1";
+        format-discharging-prefix-background = "${gruvbox.fg2}";
         format-discharging-prefix-foreground = "${gruvbox.bg0}";
-        label-discharging-background = "#504945";
-        label-discharging-foreground = "#d5c4a1";
+        label-discharging-background = "${gruvbox.bg2}";
+        label-discharging-foreground = "${gruvbox.fg2}";
         label-discharging-padding = 1;
         # discharging in anderer farbe
       };
