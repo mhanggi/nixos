@@ -3,17 +3,16 @@
 now=$(date +"%Y-%m-%d")
 
 src=/run/media/marc/t7
-dst_dir=~/backup
-dst="$dst_dir"/"$now"_confidential-archive.tar.gz.gpg
+dst=~/backup/"$now"_confidential-archive.tar.gz.gpg
 
 if [[ ! -d $src ]]
 then
-  echo "T7 is not mounted.. exiting"
+  echo "T7 is not mounted"
+  read -s -n 1 -p "Press any key to exit"
   exit 1
 fi
 
 echo "Writing backup to $dst"
-
 mkdir -p $dst_dir
 
 if [[ -f $dst ]]
@@ -35,3 +34,6 @@ tar --exclude="$src/lost+found" -cvzf  - $src | gpg \
   --batch \
   --passphrase <(pass show backup/confidential) \
   -o $dst
+
+echo "Done"
+read -s -n 1 -p "Press any key to exit"

@@ -17,7 +17,7 @@
     "command": "/home/marc/tasks/t7.sh unmount"
   },
   {
-    "name": "Archive T7",
+    "name": "Backup T7",
     "command": "alacritty -e bash -c '/home/marc/tasks/backup-t7.sh'"
   },
   {
