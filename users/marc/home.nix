@@ -163,6 +163,241 @@
     };
   };
 
+  services.polybar = {
+    enable = true;
+    script = "polybar bar &";
+    settings = let gruvbox = import ./gruvbox.nix; in {
+      "colors" = {
+        background = "${gruvbox.bg0}";
+        background-alt = "#373B41";
+
+        modules_bg = "#282A2E";
+        modules_fg = "#C5C8C6";
+      };
+
+      "settings" = {
+        screenchange-reload = true;
+      };
+
+      "bar/base" = {
+        background = "${gruvbox.bg0}";
+        #foreground = "${colors.foreground}"; #used?
+
+        border-color = "${gruvbox.bg0}";
+        #separator-foreground = "${colors.disabled}";
+
+        modules-left = "xworkspaces";
+        modules-center = "date";
+        modules-right = "pulseaudio memory filesystem backlight battery wlan";
+
+        cursor-click = "pointer";
+        cursor-scroll = "ns-resize";
+
+        enable-ipc = true;
+
+        width = "100%";
+        height = 17;
+        padding-right = 1;
+        module-margin-left = 2;
+
+        border-bottom-size = 5;
+        border-top-size = 5;
+        border-left-size = 0;
+        border-right-size = 0;
+
+        #font-N = <fontconfig pattern>;<vertical offset>
+        #font-0 = Siji:size=4;2
+        font-0 = "monospace:pixelsize=9;3";
+        font-1 = "Font Awesome 5 Free Regular:size=10;2";
+        font-2 = "Font Awesome 5 Free Solid:size=10;2";
+        font-3 = "Font Awesome 5 Brands Regular:size=10;2";
+      };
+
+      "module/xworkspaces" = {
+        type = "internal/xworkspaces";
+
+        label-active = "%name%: %icon%";
+        label-active-background = "#373B41";
+        label-active-foreground = "#fabd2f";
+        label-active-padding = 1;
+
+        label-occupied = "%name%: %icon%";
+        label-occupied-padding = 1;
+        label-occupied-foreground = "#d5c4a1";
+
+        label-urgent = "%name%: %icon%";
+        label-urgent-background = "#373B41";
+        label-urgent-foreground = "#d5c4a1";
+        label-urgent-padding = 1;
+
+        label-empty = "%name%: %icon%";
+        label-empty-foreground = "#d5c4a1";
+        label-empty-padding = 1;
+
+        icon-0 = "1;";
+        icon-1 = "2;";
+        icon-2 = "3;";
+        icon-3 = "4;";
+        icon-4 = "5;";
+        icon-5 = "6;";
+        icon-6 = "7;";
+        icon-7 = "8;";
+        icon-8 = "9;";
+        icon-default = "";
+      };
+
+      "module/filesystem" = {
+	type = "internal/fs";
+        interval = 25;
+
+        mount-0 = "/";
+
+        format-mounted-prefix = "";
+        format-mounted-prefix-background = "#d5c4a1";
+        format-mounted-prefix-foreground = "#282828";
+        format-mounted-prefix-padding = 1;
+
+        label-mounted-background = "#504945";
+        label-mounted-foreground = "#d5c4a1";
+        label-mounted-padding = 1;
+        label-mounted = "%percentage_used%%";
+      };
+
+      "module/pulseaudio" = {
+        type = "internal/pulseaudio";
+
+        format-volume-prefix = "";
+        format-volume-prefix-background = "#d5c4a1";
+        format-volume-prefix-foreground = "#282828";
+        format-volume-prefix-padding = 1;
+        label-volume = "%percentage%%";
+        label-volume-background = "#504945";
+        label-volume-foreground = "#d5c4a1";
+        label-volume-padding = 1;
+
+        format-muted-prefix = "";
+        format-muted-prefix-background = "#d5c4a1";
+        format-muted-prefix-foreground = "${gruvbox.bg0}";
+        format-muted-prefix-padding = 1;
+        label-muted = "%percentage%%";
+        label-muted-background = "#504945";
+        label-muted-foreground = "#d5c4a1";
+        label-muted-padding = 1;
+      };
+
+      "module/memory" = {
+        type = "internal/memory";
+        interval = 2;
+        format-prefix = "";
+        format-prefix-padding = 1;
+        format-prefix-background = "#d5c4a1";
+        format-prefix-foreground = "${gruvbox.bg0}";
+        label = "%gb_used%";
+        label-background = "#504945";
+        label-foreground = "#d5c4a1";
+        label-padding = 1;
+      };
+
+      "network-base" = {
+        type = "internal/network";
+        interval = 5;
+        format-connected = "<label-connected>";
+        format-disconnected = "<label-disconnected>";
+        label-disconnected = "%{F#F0C674}%ifname%%{F#707880} disconnected";
+      };
+
+      "module/wlan" = {
+        "inherit" = "network-base";
+        interface= "wlp4s0";
+        interface-type = "wireless";
+
+        label-connected = "%essid% %signal%%";
+        label-connected-background = "#504945";
+        label-connected-foreground = "#d5c4a1";
+        label-connected-padding = 1;
+
+        format-connected-prefix = "";
+        format-connected-prefix-padding = 1;
+        format-connected-prefix-background = "#d5c4a1";
+        format-connected-prefix-foreground = "${gruvbox.bg0}"; #todo
+      };
+
+      "module/eth" = {
+        "inherit" = "network-base";
+        interface-type = "wired";
+        label-connected = "%{F#F0C674}%ifname%%{F-} %local_ip%";
+      };
+
+      "module/date" = {
+        type = "internal/date";
+        interval = 1;
+
+        date = "%a, %d %b %Y - %H:%M";
+        date-alt = "%Y-%m-%d %H:%M:%S";
+
+        format = "<label>";
+        format-prefix = "";
+        format-prefix-padding = 1;
+        format-prefix-background = "#d79921";
+        format-prefix-foreground = "${gruvbox.bg0}"; # todo
+
+        label = "%date%";
+        label-background = "#504945";
+        label-foreground = "#d5c4a1";
+        label-padding = 1;
+      };
+
+      "module/backlight" = {
+        type = "internal/backlight";
+        card = "intel_backlight";
+
+        format = "<label>";
+        format-prefix = "";
+        format-prefix-padding = 1;
+        format-prefix-background = "#d5c4a1";
+        format-prefix-foreground = "${gruvbox.bg0}";# todo
+
+        label = "%percentage%%";
+        label-background = "#504945";
+        label-foreground = "#d5c4a1";
+        label-padding = 1;
+      };
+
+      "module/battery" = {
+        type = "internal/battery";
+
+        full-at = 97;
+        battery = "BAT0";
+        adapter = "AC";
+
+        format-full-prefix = "";
+        format-full-prefix-padding = 1;
+        format-full-prefix-background = "#d5c4a1";
+        format-full-prefix-foreground = "${gruvbox.bg0}";
+        label-full-background = "#504945";
+        label-full-foreground = "#d5c4a1";
+        label-full-padding = 1;
+
+        format-charging-prefix = "";
+        format-charging-prefix-padding = 1;
+        format-charging-prefix-background = "#d5c4a1";
+        format-charging-prefix-foreground = "${gruvbox.bg0}";
+        label-charging-background = "#504945";
+        label-charging-foreground = "#d5c4a1";
+        label-charging-padding = 1;
+
+        format-discharging-prefix = "";
+        format-discharging-prefix-padding = 1;
+        format-discharging-prefix-background = "#d5c4a1";
+        format-discharging-prefix-foreground = "${gruvbox.bg0}";
+        label-discharging-background = "#504945";
+        label-discharging-foreground = "#d5c4a1";
+        label-discharging-padding = 1;
+        # discharging in anderer farbe
+      };
+    };
+  };
+
   home.file.".config/i3/polybar.sh" = {
     text = ''
       #!/usr/bin/env sh
@@ -174,9 +409,9 @@
       while pgrep -x polybar >/dev/null; do sleep 1; done
 
       # Launch polybar
-      polybar example &
+      polybar base &
     '';
-   executable = true;
+    executable = true;
   };
 
   wayland.windowManager.sway = {
