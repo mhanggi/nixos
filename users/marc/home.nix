@@ -52,7 +52,8 @@
     libreoffice
     anki-bin
     exiftool
-    jetbrains.idea-community
+    (jetbrains.idea-community.override { jdk = pkgs.jetbrains.jdk; })
+    jetbrains.jdk
     polybar
     killall
     feh
