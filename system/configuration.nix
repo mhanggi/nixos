@@ -172,6 +172,7 @@
     fontDir.enable = true;
     fonts = with pkgs; [
       lmodern # latex font
+      ubuntu_font_family
       hack-font
       font-awesome
       dejavu_fonts
