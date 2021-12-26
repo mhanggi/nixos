@@ -32,8 +32,6 @@
     imv
     bc
     simple-scan
-    neofetch
-    sc-im
     w3m
     urlscan
     youtube-dl
@@ -44,16 +42,12 @@
     git-crypt
     pdfarranger
     obsidian
-    catdocx
     unzip
     tasky
     brightnessctl
     tree
     libreoffice
-    anki-bin
     exiftool
-    (jetbrains.idea-community.override { jdk = pkgs.jetbrains.jdk; })
-    jetbrains.jdk
     polybar
     killall
     feh
@@ -1197,26 +1191,6 @@
 
   programs.jq.enable = true;
   programs.htop.enable = true;
-
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      golang.go
-      #matklad.rust-analyzer
-    ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-    {
-      name = "gruvbox";
-      publisher = "jdinhlife";
-      version = "1.5.0";
-      sha256 = "14dm19bwlpmvarcxqn0a7yi1xgpvp93q6yayvqkssravic0mwh3g";
-    }];
-
-    userSettings = {
-      "workbench.colorTheme" = "Gruvbox Dark Medium";
-    };
-
-  };
 
   # imv
   home.file.".config/imv/config".text = ''
