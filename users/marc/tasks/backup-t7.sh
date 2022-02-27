@@ -3,7 +3,8 @@
 now=$(date +"%Y-%m-%d")
 
 src=/run/media/marc/t7
-dst=~/backup/"$now"_confidential-archive.tar.gz.gpg
+dst_dir=~/backup
+dst=${dst_dir}/"$now"_confidential-archive.tar.gz.gpg
 
 if [[ ! -d $src ]]
 then
@@ -24,16 +25,21 @@ fi
 echo "Touch the Yubikey!"
 password=$(pass show backup/confidential)
 
-echo "Creating TAR file T7 content"
-tar --exclude="$src/lost+found" -cvzf  - $src | gpg \
-  --symmetric \
-  --s2k-mode 3 \
-  --s2k-count 65011712 \
-  --s2k-digest-algo SHA512 \
-  --s2k-cipher-algo AES256 \
-  --batch \
-  --passphrase <(pass show backup/confidential) \
-  -o $dst
+if [ -z "$password" ]
+then
+  echo "Failed to back up T7 because password cannot be read"
+else
+  echo "Creating TAR file T7 content"
+  tar --exclude="$src/lost+found" -cvzf  - $src | gpg \
+    --symmetric \
+    --s2k-mode 3 \
+    --s2k-count 65011712 \
+    --s2k-digest-algo SHA512 \
+    --s2k-cipher-algo AES256 \
+    --batch \
+    --passphrase "$password" \
+    -o $dst
 
-echo "Done"
+  echo "Done"
+fi
 read -s -n 1 -p "Press any key to exit"
