@@ -4,7 +4,7 @@ now=$(date +"%Y-%m-%d")
 
 src=/run/media/marc/t7
 dst_dir=~/backup
-dst=${dst_dir}/"$now"_confidential-archive.tar.gz.gpg
+dst=${dst_dir}/"$now"_t7.tar.gz.gpg
 
 if [[ ! -d $src ]]
 then
@@ -23,7 +23,7 @@ then
 fi
 
 echo "Touch the Yubikey!"
-password=$(pass show backup/confidential)
+password=$(pass show backup/t7)
 
 if [ -z "$password" ]
 then
